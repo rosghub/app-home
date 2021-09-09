@@ -2,6 +2,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
+import Navbar from '../components/navbar';
+
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
@@ -12,6 +14,7 @@ const Home: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
       </Head>
       <body>
+        <Navbar />
         <section className="section">
           <div className="container">
             <h1 className="title">

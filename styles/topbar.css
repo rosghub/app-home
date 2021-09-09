@@ -1,0 +1,22 @@
+    .navbar {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .navbar-brand {
+        display: flex;
+        justify-content: flex-start;
+        margin-right: auto;
+        align-items: center;
+    }
+
+    .navbar-end {
+        display: flex;
+        justify-content: flex-end;
+        margin-left: auto;
+        align-items: center;
+    }
+    
+    .navbar-item {
+        align-items: center;
+    }
