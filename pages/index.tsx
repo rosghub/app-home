@@ -3,6 +3,13 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 import Navbar from '../components/navbar';
+import AppList from '../components/AppList';
+
+const apps = [
+  'app1',
+  'app2',
+  'app3'
+];
 
 const Home: NextPage = () => {
   return (
@@ -18,12 +25,15 @@ const Home: NextPage = () => {
         <section className="section">
           <div className="container">
             <h1 className="title">
-              Hello World
+              Web Application Directory
             </h1>
             <p className="subtitle">
-              My first website with <strong>Bulma</strong>!
+              Welcome to the home of my personal web applications.
             </p>
           </div>
+        </section>
+        <section className="section">
+          <AppList apps={apps} />
         </section>
       </body>
     </div>
