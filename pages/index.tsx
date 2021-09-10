@@ -6,9 +6,16 @@ import Navbar from '../components/navbar';
 import AppList from '../components/AppList';
 
 const apps = [
-    'app1',
-    'app2',
-    'app3'
+    {
+        name: 'One Time Secret',
+        desc: 'Secure way to share secrets',
+        repo: 'github.com'
+    },
+    {
+        name: 'Other app',
+        desc: 'Other app description',
+        repo: 'github.com'
+    }
 ];
 
 const Home: NextPage = () => {
