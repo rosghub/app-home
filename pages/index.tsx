@@ -20,20 +20,31 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
                 <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
             </Head>
+
             <body>
+
                 <Navbar />
+
                 <section className="section">
                     <div className="container">
+
                         <h1 className="title">
                             Web Application Directory
                         </h1>
+
                         <p className="subtitle">
                             Welcome to the home of my personal web applications.
                         </p>
+
                     </div>
                 </section>
+
                 <section className="section">
-                    <AppList apps={apps} />
+                    <div className="container">
+
+                        <AppList apps={apps} />
+
+                    </div>
                 </section>
             </body>
         </div>
