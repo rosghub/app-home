@@ -19,7 +19,9 @@ const AppItem = ({ app }: AppProps) => {
                 </div>
                 <div className="message-body">
                     <p>{app.desc}</p>
-                    <p className="help">test</p>
+                    {app.tech.map((e, i) => (
+                        <span className="tag is-info m-1" key={i}>{e}</span>
+                    ))}
                 </div>
             </article>
         </div>
