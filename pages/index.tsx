@@ -5,18 +5,7 @@ import styles from '../styles/Home.module.css'
 import Navbar from '../components/navbar';
 import AppList from '../components/AppList';
 
-const apps = [
-    {
-        name: 'One Time Secret',
-        desc: 'Secure way to share secrets',
-        repo: 'github.com'
-    },
-    {
-        name: 'Other app',
-        desc: 'Other app description',
-        repo: 'github.com'
-    }
-];
+import apps from '../data/apps';
 
 const Home: NextPage = () => {
     return (
@@ -33,7 +22,7 @@ const Home: NextPage = () => {
                 <Navbar />
 
                 <section className="section">
-                    <div className="container">
+                    <div className="container has-text-centered">
 
                         <h1 className="title">
                             Web Application Directory

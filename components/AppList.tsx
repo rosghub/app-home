@@ -1,18 +1,19 @@
 import React from 'react';
+import { App } from '../data/apps';
 
 type AppListProps = {
-    apps: string[]
+    apps: App[]
 };
 
 type AppProps = {
-    appName: string
+    app: App
 }
 
 const AppList = ({ apps }: AppListProps) => {
     return (
         <div>
-            {apps.map((name, i) => {
-                return <AppItem appName={name} key={i} />
+            {apps.map((app, i) => {
+                return <AppItem app={app} key={i} />
             })}
         </div>
     )
@@ -20,7 +21,7 @@ const AppList = ({ apps }: AppListProps) => {
 
 const AppItem = (props: AppProps) => {
     return (
-        <p>{props.appName}</p>
+        <p>{props.app.name}</p>
     )
 }
 
