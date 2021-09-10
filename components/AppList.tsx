@@ -1,27 +1,19 @@
 import React from 'react';
 import { App } from '../data/apps';
 
+import AppItem from './AppItem';
+
 type AppListProps = {
     apps: App[]
 };
 
-type AppProps = {
-    app: App
-}
-
 const AppList = ({ apps }: AppListProps) => {
     return (
-        <div>
+        <div className="columns">
             {apps.map((app, i) => {
                 return <AppItem app={app} key={i} />
             })}
         </div>
-    )
-}
-
-const AppItem = (props: AppProps) => {
-    return (
-        <p>{props.app.name}</p>
     )
 }
 
