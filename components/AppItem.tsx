@@ -23,21 +23,28 @@ const AppItem = ({ app }: AppProps) => {
                     <p>{app.desc}</p>
                     <a className="mb-2" href={`https://${app.link}`} target="_blank">{app.link}</a>
 
-                    <p><strong className="help mr-2 mt-4">Built With</strong></p>
+                    <p><strong className="help mr-2 mt-5">Built With</strong></p>
                     {app.tech.map((e, i) => (
                         <span className="tag is-rounded is-info is-normal m-1">{e}</span>
                     ))}
 
-                    <p><strong className="help mr-2 mt-3">Hosted On</strong></p>
+                    <p><strong className="help mr-2 mt-4">Hosted On</strong></p>
                     <p className="mb-2">{app.host}</p>
 
-                    <hr className={`my-4 ${styles.divider}`}/>
+                    <hr className={`mt-5 mb-4 ${styles.divider}`}/>
 
                     <div className="level has-text-centered">
                         <div className="level-item">
                             <div>
                                 <p className="help"><strong>Commits</strong></p>
                                 <p className="help">224</p>
+                            </div>
+                        </div>
+
+                        <div className="level-item">
+                            <div>
+                                <p className="help"><strong>Last Commit</strong></p>
+                                <p className="help">2/2/2022</p>
                             </div>
                         </div>
 

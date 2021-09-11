@@ -19,10 +19,10 @@ const apps = [
         status: 'Complete'
     },
     {
-        name: 'Other app',
-        desc: 'Other app description',
+        name: 'This Site',
+        desc: 'A directory site for my open source web apps.',
         repo: 'github.com',
-        tech: [ 'NodeJS' ],
+        tech: [ 'ReactJS', 'NextJS', 'Bulma' ],
         host: 'Firebase',
         link: 'rosghub.xyz',
         status: 'WIP'
