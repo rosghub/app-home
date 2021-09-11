@@ -3,23 +3,29 @@ export type App = {
     desc: string,
     repo: string,
     tech: string[],
-    host: string
+    host: string,
+    link: string,
+    status: string
 };
 
 const apps = [
     {
         name: 'One Time Secret',
-        desc: 'Secure way to share secrets',
+        desc: 'Secure way to share secrets. Generate a disposable one-time use link to share an encrypted secret.',
         repo: 'github.com',
-        tech: [ 'NodeJS', 'TypeScript', 'ExpressJS', 'MongoDB', 'EJS', 'BulmaCSS' ],
-        host: 'Vultr VPS'
+        tech: [ 'NodeJS', 'TypeScript', 'ExpressJS', 'MongoDB', 'EJS', 'Bulma' ],
+        host: 'Vultr VPS (Nginx reverse proxy)',
+        link: 'secrets.rosghub.xyz',
+        status: 'Complete'
     },
     {
         name: 'Other app',
         desc: 'Other app description',
         repo: 'github.com',
         tech: [ 'NodeJS' ],
-        host: 'Firebase'
+        host: 'Firebase',
+        link: 'rosghub.xyz',
+        status: 'WIP'
     }
 ];
 

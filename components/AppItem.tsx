@@ -18,10 +18,28 @@ const AppItem = ({ app }: AppProps) => {
                     </a>
                 </div>
                 <div className="message-body">
+
                     <p>{app.desc}</p>
+                    <a className="mb-2" href={`https://${app.link}`} target="_blank">{app.link}</a>
+
+                    <p><strong className="help mr-2 mt-4">Built With</strong></p>
                     {app.tech.map((e, i) => (
-                        <span className="tag is-info m-1" key={i}>{e}</span>
+                        <span className="tag is-rounded is-info is-normal m-1">{e}</span>
                     ))}
+
+                    <p><strong className="help mr-2 mt-3">Hosted On</strong></p>
+                    <p>{app.host}</p>
+
+                    <div className="columns is-mobile py-2">
+                        <div className="column">
+                            <p className="help"><strong>Commits</strong></p>
+                            <p className="help">224</p>
+                        </div>
+                        <div className="column">
+                            <p className="help"><strong>Status</strong></p>
+                            <p className="help">{app.status}</p>
+                        </div>
+                    </div>
                 </div>
             </article>
         </div>
