@@ -1,3 +1,4 @@
+import styles from './AppItem.module.css';
 import React from 'react';
 import { App } from '../data/apps';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -28,16 +29,23 @@ const AppItem = ({ app }: AppProps) => {
                     ))}
 
                     <p><strong className="help mr-2 mt-3">Hosted On</strong></p>
-                    <p>{app.host}</p>
+                    <p className="mb-2">{app.host}</p>
 
-                    <div className="columns is-mobile py-2">
-                        <div className="column">
-                            <p className="help"><strong>Commits</strong></p>
-                            <p className="help">224</p>
+                    <hr className={`my-4 ${styles.divider}`}/>
+
+                    <div className="level has-text-centered">
+                        <div className="level-item">
+                            <div>
+                                <p className="help"><strong>Commits</strong></p>
+                                <p className="help">224</p>
+                            </div>
                         </div>
-                        <div className="column">
-                            <p className="help"><strong>Status</strong></p>
-                            <p className="help">{app.status}</p>
+
+                        <div className="level-item">
+                            <div>
+                                <p className="help"><strong>Status</strong></p>
+                                <p className="help">{app.status}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
