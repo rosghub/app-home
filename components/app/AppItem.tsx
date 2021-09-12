@@ -1,8 +1,10 @@
 import styles from './AppItem.module.css';
 import React from 'react';
-import { App } from '../data/apps';
+import { App } from '../../data/apps';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
+
+import Languages from './Languages';
 
 type AppProps = {
     app: App
@@ -28,15 +30,14 @@ const AppItem = ({ app }: AppProps) => {
                         <span className="tag is-rounded is-info is-normal m-1">{e}</span>
                     ))}
 
-                    <p><strong className="help mr-2 mt-3">Languages</strong></p>
-                    {app.tech.map((e, i) => (
-                        <span className="tag is-rounded is-warning is-normal m-1">{e}</span>
-                    ))}
+                    {app.github && (
+                        <Languages github={app.github} />
+                    )}
 
                     <p><strong className="help mr-2 mt-4">Hosted On</strong></p>
                     <p className="mb-2">{app.host}</p>
 
-                    <hr className={`mt-5 mb-4 ${styles.divider}`}/>
+                    <hr className={`mt-5 mb-4 ${styles.divider}`} />
 
                     <div className="level has-text-centered">
                         <div className="level-item">
@@ -67,3 +68,11 @@ const AppItem = ({ app }: AppProps) => {
 }
 
 export default AppItem;
+
+/*
+
+                    <p><strong className="help mr-2 mt-3">Languages</strong></p>
+                    {app.tech.map((e, i) => (
+                        <span className="tag is-rounded is-warning is-normal m-1">{e}</span>
+                    ))}
+*/

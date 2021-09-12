@@ -6,10 +6,16 @@ export type App = {
     langs: string[],
     host: string,
     link: string,
-    status: string
+    status: string,
+    github?: Github
 };
 
-const apps = [
+export type Github = {
+    owner: string,
+    repo: string
+};
+
+const apps: App[] = [
     {
         name: 'One Time Secret',
         desc: 'Secure way to share secrets. Generate a disposable one-time use link to share an encrypted secret.',
@@ -18,7 +24,11 @@ const apps = [
         langs: [ 'TypeScript', 'EJS', 'CSS', 'HTML' ],
         host: 'Vultr VPS (Nginx reverse proxy)',
         link: 'secrets.rosghub.xyz',
-        status: 'Complete'
+        status: 'Complete',
+        github: {
+            owner: 'rosghub',
+            repo: 'one-time-secret'
+        }
     },
     {
         name: 'This Site',

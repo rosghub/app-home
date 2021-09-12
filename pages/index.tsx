@@ -3,7 +3,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 import Navbar from '../components/navbar';
-import AppList from '../components/AppList';
+import AppItem from '../components/app/AppItem';
 
 import apps from '../data/apps';
 
@@ -38,7 +38,11 @@ const Home: NextPage = () => {
                 <section className="section">
                     <div className="container">
 
-                        <AppList apps={apps} />
+                        <div className="columns">
+                            {apps.map((app, i) => {
+                                return <AppItem app={app} key={i} />
+                            })}
+                        </div>
 
                     </div>
                 </section>
