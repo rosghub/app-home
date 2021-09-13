@@ -3,6 +3,7 @@ import React from 'react';
 import { App } from '../../data/apps';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 import AppProperty, { APIResult, AppPropertyFetcher, ContributorAPIResult, RepoAPIResult } from '../common/AppProperty';
 
@@ -70,7 +71,8 @@ const AppItem = ({ app }: AppProps) => {
 
                     <p><strong className="help mr-2 mt-4">Hosted On</strong></p>
                     <p className="mb-2">{app.host}</p>
-                    <a className="mb-2" href={`https://${app.link}`} target="_blank">{app.link}</a>
+                    <FontAwesomeIcon icon={faLink} />
+                    <a className="mb-2 ml-2" href={`https://${app.link}`} target="_blank">{app.link}</a>
 
                     <hr className={`mt-5 mb-4 ${styles.divider}`} />
 
