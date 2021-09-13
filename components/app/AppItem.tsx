@@ -68,36 +68,35 @@ const AppItem = ({ app }: AppProps) => {
     return (
         <article className="message">
             <div className="message-header">
-                <p>{app.name}</p>
-                <a href={app.repo} target="_blank">
-                    <FontAwesomeIcon icon={faGithub} />
+                <a className={`${styles.link} mr-3`} href={app.repo} target="_blank">
+                    <FontAwesomeIcon icon={faGithub} className="mr-2" />
+                    {app.name}
                 </a>
+
+                {app.link && (
+                    <a className={styles.link} href={`https://${app.link}`} target="_blank">
+                        <FontAwesomeIcon icon={faLink} className="mr-2" />
+                        {app.link}
+                    </a>
+                )}
             </div>
 
             <div className="message-body">
 
                 <p>{app.desc}</p>
 
-                <p><strong className="help mr-2 mt-5">Built With</strong></p>
+                <p><strong className="help mt-5">Built With</strong></p>
                 {app.tech.map((e, i) => (
                     <span className="tag is-rounded is-info is-normal m-1">{e}</span>
                 ))}
 
-                <p><strong className="help mr-2 mt-3">Languages</strong></p>
+                <p><strong className="help mt-4">Languages</strong></p>
                 <AppProperty appPropertyFetcher={langFetcher} />
 
-                <p><strong className="help mr-2 mt-4">Hosted On</strong></p>
-                <div className="mr-4 is-flex is-flex-wrap-wrap">
-                    <span className="mb-2 mr-3 is-flex-grow-1">{app.host}</span>
-                    {app.link && (
-                        <span className={styles.link}>
-                            <FontAwesomeIcon icon={faLink} />
-                            <a className="mb-2 ml-2" href={`https://${app.link}`} target="_blank">{app.link}</a>
-                        </span>
-                    )}
-                </div>
+                <p><strong className="help mt-4">Hosted On</strong></p>
+                <span className="mb-2">{app.host}</span>
 
-                <p><strong className="help mr-2 mt-4">Workflows</strong></p>
+                <p><strong className="help mt-4">Workflows</strong></p>
                 <AppProperty appPropertyFetcher={workflowFetcher} />
 
                 <hr className={`mt-5 mb-4 ${styles.divider}`} />
