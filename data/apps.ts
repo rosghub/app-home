@@ -28,17 +28,19 @@ const apps: App[] = [
             repo: 'one-time-secret'
         }
     },
-    /*
     {
         name: 'This Site',
         desc: 'A directory site for my open source web apps.',
-        repo: 'github.com',
+        repo: 'https://github.com/rosghub/app-home',
         tech: [ 'ReactJS', 'NextJS', 'Bulma' ],
-        host: 'Firebase',
-        link: 'rosghub.xyz',
-        status: 'WIP'
+        host: '(not hosted yet)',
+        link: '',
+        status: 'WIP',
+        github: {
+            owner: 'rosghub',
+            repo: 'app-home'
+        }
     }
-    */
 ];
 
 export default apps;
