@@ -5,4 +5,6 @@
 
 .link {
     white-space: nowrap;
+    text-decoration: none !important;
+    font-weight: 600;
 }

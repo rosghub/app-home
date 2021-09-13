@@ -75,7 +75,7 @@ const AppItem = ({ app }: AppProps) => {
                 </a>
 
                 {app.link && (
-                    <a className={styles.link} href={`https://${app.link}`} target="_blank">
+                    <a className={`${styles.link} has-text-weight-normal`} href={`https://${app.link}`} target="_blank">
                         <FontAwesomeIcon icon={faLink} className="mr-2" />
                         {app.link}
                     </a>
