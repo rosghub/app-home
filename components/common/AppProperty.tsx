@@ -9,9 +9,11 @@ export interface AppPropertyFetcher {
 
 type AppPropertyProps = {
     appPropertyFetcher: AppPropertyFetcher
+    label: string,
+    labelClassName?: string
 }
 
-export interface APIResult {};
+export interface APIResult { };
 
 export interface ContributorAPIResult extends APIResult {
     login: string,
@@ -29,20 +31,21 @@ export interface WorkflowAPIResult extends APIResult {
     }[]
 }
 
-const AppProperty: FC<AppPropertyProps> = ({ appPropertyFetcher }): JSX.Element => {
-    const { apiEP, render } = appPropertyFetcher;
+const AppProperty: FC<AppPropertyProps> = (props): JSX.Element => {
+    const { apiEP, render } = props.appPropertyFetcher;
     const { data, error } = useSWR(apiEP, fetcher);
 
     if (error) {
         console.error('Error reaching API endpoint: ' + apiEP);
         console.error(error);
     }
-
+    const labelCN = props.labelClassName || '';
     return (
         <>
+            <p><strong className={`help ${labelCN}`}>{props.label}</strong></p>
             {data
                 ? render(data)
-                : <progress className="progress is-small is-warning my-3" max="100" />
+                : <progress className="progress is-small is-danger my-3" max="100" />
             }
         </>
     )

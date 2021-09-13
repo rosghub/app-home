@@ -90,29 +90,35 @@ const AppItem = ({ app }: AppProps) => {
                     <span className="tag is-rounded is-info is-normal m-1">{e}</span>
                 ))}
 
-                <p><strong className="help mt-4">Languages</strong></p>
-                <AppProperty appPropertyFetcher={langFetcher} />
+                <AppProperty
+                    label="Languages"
+                    labelClassName="mt-4"
+                    appPropertyFetcher={langFetcher} />
 
                 <p><strong className="help mt-4">Hosted On</strong></p>
                 <span className="mb-2">{app.host}</span>
 
-                <p><strong className="help mt-4">Workflows</strong></p>
-                <AppProperty appPropertyFetcher={workflowFetcher} />
+                <AppProperty
+                    label="Workflows"
+                    labelClassName="mt-4"
+                    appPropertyFetcher={workflowFetcher} />
 
                 <hr className={`mt-5 mb-4 ${styles.divider}`} />
 
                 <div className="level has-text-centered">
                     <div className="level-item">
                         <div>
-                            <p className="help"><strong>Commits</strong></p>
-                            <AppProperty appPropertyFetcher={commitCountFetcher} />
+                            <AppProperty
+                                label="Commits"
+                                appPropertyFetcher={commitCountFetcher} />
                         </div>
                     </div>
 
                     <div className="level-item">
                         <div>
-                            <p className="help"><strong>Last Updated</strong></p>
-                            <AppProperty appPropertyFetcher={lastCommitFetcher} />
+                            <AppProperty
+                                label="Last Updated"
+                                appPropertyFetcher={lastCommitFetcher} />
                         </div>
                     </div>
 
