@@ -71,13 +71,15 @@ const AppItem = ({ app }: AppProps) => {
                 <AppProperty appPropertyFetcher={langFetcher} />
 
                 <p><strong className="help mr-2 mt-4">Hosted On</strong></p>
-                <span className="mb-2 mr-5">{app.host}</span>
-                {app.link && (
-                    <span className={styles.link}>
-                        <FontAwesomeIcon icon={faLink} />
-                        <a className="mb-2 ml-2" href={`https://${app.link}`} target="_blank">{app.link}</a>
-                    </span>
-                )}
+                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                    <span className="mb-2 mr-5" style={{ flexGrow: 1 }}>{app.host}</span>
+                    {app.link && (
+                        <span className={styles.link}>
+                            <FontAwesomeIcon icon={faLink} />
+                            <a className="mb-2 ml-2" href={`https://${app.link}`} target="_blank">{app.link}</a>
+                        </span>
+                    )}
+                </div>
 
                 <hr className={`mt-5 mb-4 ${styles.divider}`} />
 
