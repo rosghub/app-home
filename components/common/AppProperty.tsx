@@ -4,7 +4,7 @@ import { fetcher } from '../../utils/utils';
 
 export interface AppPropertyFetcher {
     apiEP: string,
-    render: (data: APIResult) => JSX.Element
+    render: (data: APIResult) => JSX.Element | null
 }
 
 type AppPropertyProps = {
@@ -39,16 +39,24 @@ const AppProperty: FC<AppPropertyProps> = (props): JSX.Element => {
         console.error('Error reaching API endpoint: ' + apiEP);
         console.error(error);
     }
+
     const labelCN = props.labelClassName || '';
-    return (
-        <>
-            <p><strong className={`help ${labelCN}`}>{props.label}</strong></p>
-            {data
-                ? render(data)
-                : <progress className="progress is-small is-danger my-3" max="100" />
-            }
-        </>
-    )
+    const label = <p><strong className={`help ${labelCN}`}>{props.label}</strong></p>
+
+    if (data) {
+        const rendered = render(data);
+        return rendered
+            ? (<>
+                {label}
+                {rendered}
+            </>)
+            : <></>
+    }
+
+    return (<>
+        {label}
+        <progress className="progress is-small is-danger my-3" max="100" />
+    </>)
 }
 
 export default AppProperty;

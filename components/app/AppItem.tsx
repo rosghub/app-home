@@ -23,7 +23,7 @@ const AppItem = ({ app }: AppProps) => {
 
     const langFetcher: AppPropertyFetcher = {
         apiEP: `https://api.github.com/repos/${owner}/${repo}/languages`,
-        render: (data: APIResult): JSX.Element => {
+        render: (data: APIResult) => {
             return (<>
                 {Object.keys(data).map((l, i) => (
                     <span className="tag is-rounded is-warning is-normal m-1" key={i}>{l}</span>
@@ -34,7 +34,7 @@ const AppItem = ({ app }: AppProps) => {
 
     const commitCountFetcher: AppPropertyFetcher = {
         apiEP: `https://api.github.com/repos/${owner}/${repo}/contributors`,
-        render: (data: APIResult): JSX.Element => {
+        render: (data: APIResult) => {
             const contributors = data as ContributorAPIResult[];
             const count = contributors.find(c => c.login == owner)?.contributions || 0;
             return <p className="help">{count}</p>
@@ -43,7 +43,7 @@ const AppItem = ({ app }: AppProps) => {
 
     const lastCommitFetcher: AppPropertyFetcher = {
         apiEP: `https://api.github.com/repos/${owner}/${repo}`,
-        render: (data: APIResult): JSX.Element => {
+        render: (data: APIResult) => {
             const result = data as RepoAPIResult;
             const date = new Date(result.updated_at);
             return <p className="help">{date.toLocaleDateString()}</p>
@@ -52,16 +52,17 @@ const AppItem = ({ app }: AppProps) => {
 
     const workflowFetcher: AppPropertyFetcher = {
         apiEP: `https://api.github.com/repos/${owner}/${repo}/actions/workflows`,
-        render: (data: APIResult): JSX.Element => {
+        render: (data: APIResult) => {
             const result = data as WorkflowAPIResult;
-            console.log(result);
-            return (<>
-                {result.workflows.map((w, i) => (
-                    <a href={w.html_url} target="_blank">
-                        <img className="m-1" src={w.badge_url} key={i} />
-                    </a>
-                ))}
-            </>)
+            return (result.workflows.length > 0)
+                ? (<>
+                    {result.workflows.map((w, i) => (
+                        <a href={w.html_url} target="_blank">
+                            <img className="m-1" src={w.badge_url} key={i} />
+                        </a>
+                    ))}
+                </>)
+                : null
         }
     }
 
