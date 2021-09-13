@@ -4,7 +4,7 @@ export type App = {
     repo: string,
     tech: string[],
     host: string,
-    link: string,
+    link?: string,
     status: string,
     github?: Github
 };
@@ -34,7 +34,6 @@ const apps: App[] = [
         repo: 'https://github.com/rosghub/app-home',
         tech: [ 'ReactJS', 'NextJS', 'Bulma' ],
         host: '(not hosted yet)',
-        link: '',
         status: 'WIP',
         github: {
             owner: 'rosghub',

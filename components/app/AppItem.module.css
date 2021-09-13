@@ -2,3 +2,7 @@
     background: #ddd;
     height: 1px;
 }
+
+.link {
+    white-space: nowrap;
+}
