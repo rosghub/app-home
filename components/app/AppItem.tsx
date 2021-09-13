@@ -62,12 +62,8 @@ const AppItem = ({ app }: AppProps) => {
                         <span className="tag is-rounded is-info is-normal m-1">{e}</span>
                     ))}
 
-                    {app.github && (
-                        <>
-                            <p><strong className="help mr-2 mt-3">Languages</strong></p>
-                            <AppProperty appPropertyFetcher={langFetcher} />
-                        </>
-                    )}
+                    <p><strong className="help mr-2 mt-3">Languages</strong></p>
+                    <AppProperty appPropertyFetcher={langFetcher} />
 
                     <p><strong className="help mr-2 mt-4">Hosted On</strong></p>
                     <p className="mb-2">{app.host}</p>
