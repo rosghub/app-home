@@ -55,7 +55,6 @@ const AppItem = ({ app }: AppProps) => {
                 <div className="message-body">
 
                     <p>{app.desc}</p>
-                    <a className="mb-2" href={`https://${app.link}`} target="_blank">{app.link}</a>
 
                     <p><strong className="help mr-2 mt-5">Built With</strong></p>
                     {app.tech.map((e, i) => (
@@ -71,6 +70,7 @@ const AppItem = ({ app }: AppProps) => {
 
                     <p><strong className="help mr-2 mt-4">Hosted On</strong></p>
                     <p className="mb-2">{app.host}</p>
+                    <a className="mb-2" href={`https://${app.link}`} target="_blank">{app.link}</a>
 
                     <hr className={`mt-5 mb-4 ${styles.divider}`} />
 
