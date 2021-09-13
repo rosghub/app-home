@@ -4,13 +4,45 @@ import { App } from '../../data/apps';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
-import Languages from './Languages';
+import AppProperty, { APIResult, AppPropertyFetcher, ContributorAPIResult, RepoAPIResult } from '../common/AppProperty';
 
 type AppProps = {
     app: App
 }
 
 const AppItem = ({ app }: AppProps) => {
+
+    const { owner, repo } = app.github || {};
+
+    const langFetcher: AppPropertyFetcher = {
+        apiEP: `https://api.github.com/repos/${owner}/${repo}/languages`,
+        render: (data: APIResult): JSX.Element => {
+            return (<>
+                {Object.keys(data).map((l, i) => (
+                    <span className="tag is-rounded is-warning is-normal m-1" key={i}>{l}</span>
+                ))}
+            </>)
+        }
+    };
+
+    const commitCountFetcher: AppPropertyFetcher = {
+        apiEP: `https://api.github.com/repos/${owner}/${repo}/contributors`,
+        render: (data: APIResult): JSX.Element => {
+            const contributors = data as ContributorAPIResult[];
+            const count = contributors.find(c => c.login == owner)?.contributions || 0;
+            return <p className="help">{count}</p>
+        }
+    }
+
+    const lastCommitFetcher: AppPropertyFetcher = {
+        apiEP: `https://api.github.com/repos/${owner}/${repo}`,
+        render: (data: APIResult): JSX.Element => {
+            const result = data as RepoAPIResult;
+            const date = new Date(result.updated_at);
+            return <p className="help">{date.toLocaleDateString()}</p>
+        }
+    }
+
     return (
         <div className="column is-6">
             <article className="message">
@@ -31,7 +63,10 @@ const AppItem = ({ app }: AppProps) => {
                     ))}
 
                     {app.github && (
-                        <Languages github={app.github} />
+                        <>
+                            <p><strong className="help mr-2 mt-3">Languages</strong></p>
+                            <AppProperty appPropertyFetcher={langFetcher} />
+                        </>
                     )}
 
                     <p><strong className="help mr-2 mt-4">Hosted On</strong></p>
@@ -43,14 +78,14 @@ const AppItem = ({ app }: AppProps) => {
                         <div className="level-item">
                             <div>
                                 <p className="help"><strong>Commits</strong></p>
-                                <p className="help">224</p>
+                                <AppProperty appPropertyFetcher={commitCountFetcher} />
                             </div>
                         </div>
 
                         <div className="level-item">
                             <div>
-                                <p className="help"><strong>Last Commit</strong></p>
-                                <p className="help">2/2/2022</p>
+                                <p className="help"><strong>Last Updated</strong></p>
+                                <AppProperty appPropertyFetcher={lastCommitFetcher} />
                             </div>
                         </div>
 

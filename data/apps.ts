@@ -19,7 +19,7 @@ const apps: App[] = [
     {
         name: 'One Time Secret',
         desc: 'Secure way to share secrets. Generate a disposable one-time use link to share an encrypted secret.',
-        repo: 'github.com',
+        repo: 'https://github.com/rosghub/one-time-secret',
         tech: [ 'NodeJS', 'ExpressJS', 'MongoDB', 'Bulma' ],
         langs: [ 'TypeScript', 'EJS', 'CSS', 'HTML' ],
         host: 'Vultr VPS (Nginx reverse proxy)',
@@ -30,6 +30,7 @@ const apps: App[] = [
             repo: 'one-time-secret'
         }
     },
+    /*
     {
         name: 'This Site',
         desc: 'A directory site for my open source web apps.',
@@ -40,6 +41,7 @@ const apps: App[] = [
         link: 'rosghub.xyz',
         status: 'WIP'
     }
+    */
 ];
 
 export default apps;
