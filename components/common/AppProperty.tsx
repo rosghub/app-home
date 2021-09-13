@@ -22,6 +22,13 @@ export interface RepoAPIResult extends APIResult {
     updated_at: string
 }
 
+export interface WorkflowAPIResult extends APIResult {
+    workflows: {
+        badge_url: string,
+        html_url: string
+    }[]
+}
+
 const AppProperty: FC<AppPropertyProps> = ({ appPropertyFetcher }): JSX.Element => {
     const { apiEP, render } = appPropertyFetcher;
     const { data, error } = useSWR(apiEP, fetcher);

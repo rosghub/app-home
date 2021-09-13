@@ -9,7 +9,8 @@ import AppProperty, {
     APIResult,
     AppPropertyFetcher,
     ContributorAPIResult,
-    RepoAPIResult
+    RepoAPIResult,
+    WorkflowAPIResult
 } from '../common/AppProperty';
 
 type AppProps = {
@@ -49,6 +50,21 @@ const AppItem = ({ app }: AppProps) => {
         }
     }
 
+    const workflowFetcher: AppPropertyFetcher = {
+        apiEP: `https://api.github.com/repos/${owner}/${repo}/actions/workflows`,
+        render: (data: APIResult): JSX.Element => {
+            const result = data as WorkflowAPIResult;
+            console.log(result);
+            return (<>
+                {result.workflows.map((w, i) => (
+                    <a href={w.html_url} target="_blank">
+                        <img className="m-1" src={w.badge_url} key={i} />
+                    </a>
+                ))}
+            </>)
+        }
+    }
+
     return (
         <article className="message">
             <div className="message-header">
@@ -72,7 +88,7 @@ const AppItem = ({ app }: AppProps) => {
 
                 <p><strong className="help mr-2 mt-4">Hosted On</strong></p>
                 <div className="mr-4 is-flex is-flex-wrap-wrap">
-                    <span className="mb-2 mr-5 is-flex-grow-1">{app.host}</span>
+                    <span className="mb-2 mr-3 is-flex-grow-1">{app.host}</span>
                     {app.link && (
                         <span className={styles.link}>
                             <FontAwesomeIcon icon={faLink} />
@@ -80,6 +96,9 @@ const AppItem = ({ app }: AppProps) => {
                         </span>
                     )}
                 </div>
+
+                <p><strong className="help mr-2 mt-4">Workflows</strong></p>
+                <AppProperty appPropertyFetcher={workflowFetcher} />
 
                 <hr className={`mt-5 mb-4 ${styles.divider}`} />
 
