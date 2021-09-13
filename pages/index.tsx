@@ -39,9 +39,9 @@ const Home: NextPage = () => {
                     <div className="container">
 
                         <div className="columns">
-                            {apps.map((app, i) => {
-                                return <AppItem app={app} key={i} />
-                            })}
+                            {apps.map((app, i) => (
+                                <AppItem app={app} key={i} />
+                            ))}
                         </div>
 
                     </div>

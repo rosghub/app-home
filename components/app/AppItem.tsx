@@ -68,11 +68,3 @@ const AppItem = ({ app }: AppProps) => {
 }
 
 export default AppItem;
-
-/*
-
-                    <p><strong className="help mr-2 mt-3">Languages</strong></p>
-                    {app.tech.map((e, i) => (
-                        <span className="tag is-rounded is-warning is-normal m-1">{e}</span>
-                    ))}
-*/
