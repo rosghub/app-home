@@ -3,7 +3,7 @@ import React from 'react';
 import { App } from '../../data/apps';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import AppProperty, {
     APIResult,
@@ -76,7 +76,7 @@ const AppItem = ({ app }: AppProps) => {
 
                 {app.link && (
                     <a className={`${styles.link} has-text-weight-normal`} href={`https://${app.link}`} target="_blank">
-                        <FontAwesomeIcon icon={faLink} className="mr-2" />
+                        <FontAwesomeIcon icon={faExternalLinkAlt} className="mr-2" size="sm" />
                         {app.link}
                     </a>
                 )}
