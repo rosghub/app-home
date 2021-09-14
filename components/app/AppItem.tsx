@@ -1,4 +1,5 @@
 import styles from './AppItem.module.css';
+import Image from 'next/image';
 import React from 'react';
 import { App } from '../../data/apps';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -57,8 +58,9 @@ const AppItem = ({ app }: AppProps) => {
             return (result.workflows.length > 0)
                 ? (<>
                     {result.workflows.map((w, i) => (
-                        <a href={w.html_url} target="_blank">
-                            <img className="m-1" src={w.badge_url} key={i} />
+                        <a href={w.html_url} target="_blank" rel="noreferrer" key={i}>
+                            {/*<Image className="m-1" src={w.badge_url} />*/}
+                            <img className="m-1" src={w.badge_url} alt="wf_badge" />
                         </a>
                     ))}
                 </>)
@@ -69,13 +71,13 @@ const AppItem = ({ app }: AppProps) => {
     return (
         <article className="message">
             <div className="message-header">
-                <a className={`${styles.link} mr-3`} href={app.repo} target="_blank">
+                <a className={`${styles.link} mr-3`} href={app.repo} target="_blank" rel="noreferrer">
                     <FontAwesomeIcon icon={faGithub} className="mr-2" />
                     {app.name}
                 </a>
 
                 {app.link && (
-                    <a className={`${styles.link} has-text-weight-normal`} href={`https://${app.link}`} target="_blank">
+                    <a className={`${styles.link} has-text-weight-normal`} href={`https://${app.link}`} target="_blank" rel="noreferrer">
                         <FontAwesomeIcon icon={faExternalLinkAlt} className="mr-2" size="sm" />
                         {app.link}
                     </a>
@@ -88,7 +90,7 @@ const AppItem = ({ app }: AppProps) => {
 
                 <p><strong className="help mt-5">Built With</strong></p>
                 {app.tech.map((e, i) => (
-                    <span className="tag is-rounded is-info is-normal m-1">{e}</span>
+                    <span className="tag is-rounded is-info is-normal m-1" key={i}>{e}</span>
                 ))}
 
                 <AppProperty

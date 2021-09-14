@@ -40,8 +40,8 @@ const Home: NextPage = () => {
 
                         <div className="columns">
                             {apps.map((app, i) => (
-                                <div className="column is-6">
-                                    <AppItem app={app} key={i} />
+                                <div className="column is-6" key={i}>
+                                    <AppItem app={app} />
                                 </div>
                             ))}
                         </div>
