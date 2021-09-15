@@ -1,0 +1,34 @@
+name: VPS Deploy Export
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Build nextjs app
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+        run: |
+          npm ci
+          npm run css-build
+          npm run export
+
+    - name: Deploy app
+      env:
+        PRIVATE_KEY: ${{ secrets.SSHKEY }}
+        KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
+        DEST: "root@rosghub.xyz:/var/www/vps-home"
+      run: |
+        mkdir -p ~/.ssh
+        echo "${KNOWN_HOSTS}" >> ~/.ssh/known_hosts
+        echo "${PRIVATE_KEY}" > ~/.ssh/id_rsa
+        chmod -R 700 ~/.ssh
+        rsync -avz --delete ./out "${DEST}"
