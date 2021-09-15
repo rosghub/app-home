@@ -16,18 +16,19 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12
-      - run: |
+      run: |
           npm ci
           npm run css-build
           npm run export
 
     - name: Deploy app
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        USERNAME: ${{ secrets.USERNAME }}
-        PORT: ${{ secrets.PORT }}
-        KEY: ${{ secrets.SSHKEY }}
-        script: |
-          # TODO
-
+      env:
+        PRIVATE_KEY: ${{ secrets.SSHKEY }}
+        KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
+        DEST: "root@rosghub.xyz:/var/www/vps-home"
+      run: |
+        mkdir -p ~/.ssh
+        echo "${KNOWN_HOSTS}" >> ~/.ssh/known_hosts
+        echo "${PRIVATE_KEY}" > ~/.ssh/id_rsa
+        chmod -R 700 ~/.ssh
+        rsync -avz --delete ./out "${DEST}"
