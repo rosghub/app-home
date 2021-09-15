@@ -16,7 +16,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12
-      run: |
+        run: |
           npm ci
           npm run css-build
           npm run export
