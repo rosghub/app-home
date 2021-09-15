@@ -1,0 +1,33 @@
+name: VPS Deploy Export
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Build nextjs app
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+      - run: |
+          npm ci
+          npm run css-build
+          npm run export
+
+    - name: Deploy app
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PORT: ${{ secrets.PORT }}
+        KEY: ${{ secrets.SSHKEY }}
+        script: |
+          # TODO
+
