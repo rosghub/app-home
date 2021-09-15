@@ -23,7 +23,7 @@ jobs:
 
     - name: Deploy app
       env:
-        PRIVATE_KEY: ${{ secrets.SSHKEY }}
+        PRIVATE_KEY: ${{ secrets.SSH_KEY }}
         KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
         DEST: "root@rosghub.xyz:/var/www/vps-home"
       run: |
