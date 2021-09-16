@@ -10,15 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Build nextjs app
-      - uses: actions/checkout@v1
-
-      - uses: actions/setup-node@v1
-      - with:
+      - name: Setup Environment
+        uses: actions/checkout@v1
+        uses: actions/setup-node@v1
+        with:
           node-version: 12
-      - run: npm ci
-      - run: npm run css-build
-      - run: npm run export
+      
+      - name: Build app
+        run: npm ci
+        run: npm run css-build
+        run: npm run export
 
       - name: Deploy app
         env:
