@@ -51,7 +51,7 @@ const AppItem = ({ app }: AppProps) => {
         }
     }
 
-    const workflowFetcher: AppPropertyFetcher = {
+    const ghaFetcher: AppPropertyFetcher = {
         apiEP: `https://api.github.com/repos/${owner}/${repo}/actions/workflows`,
         render: (data: APIResult) => {
             const result = data as WorkflowAPIResult;
@@ -102,9 +102,9 @@ const AppItem = ({ app }: AppProps) => {
                 <span className="mb-2">{app.host}</span>
 
                 <AppProperty
-                    label="Workflows"
+                    label="Github Actions"
                     labelClassName="mt-4"
-                    appPropertyFetcher={workflowFetcher} />
+                    appPropertyFetcher={ghaFetcher} />
 
                 <hr className={`mt-5 mb-4 ${styles.divider}`} />
 
