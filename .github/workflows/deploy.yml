@@ -31,9 +31,9 @@ jobs:
           HOST: "admin@rosghub.xyz"
         run: |
           echo "Workflow line:"
-          grep -q "Workflows" "index.html" && echo exists
+          grep -q "Workflows" "out/index.html" && echo exists
           echo "Actions line:"
-          grep -q "Actions" "index.html" && echo exists
+          grep -q "Actions" "out/index.html" && echo exists
           mkdir -p ~/.ssh
           echo "${KNOWN_HOSTS}" >> ~/.ssh/known_hosts
           echo "${PRIVATE_KEY}" > ~/.ssh/id_rsa
