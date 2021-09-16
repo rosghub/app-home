@@ -102,7 +102,7 @@ const AppItem = ({ app }: AppProps) => {
                 <span className="mb-2">{app.host}</span>
 
                 <AppProperty
-                    label="Temp3"
+                    label="Github Actions"
                     labelClassName="mt-4"
                     appPropertyFetcher={ghaFetcher} />
 
