@@ -28,6 +28,7 @@ jobs:
         DEST: "root@rosghub.xyz:/var/www/vps-home"
       run: |
         mkdir -p ~/.ssh
+        echo "${PRIVATE_KEY}"
         echo "${KNOWN_HOSTS}" >> ~/.ssh/known_hosts
         echo "${PRIVATE_KEY}" > ~/.ssh/gha_rsa
         chmod -R 700 ~/.ssh
