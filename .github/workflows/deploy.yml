@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+   deploy:
 
     runs-on: ubuntu-latest
 
@@ -16,10 +16,9 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12
-    - run: |
-        npm ci
-        npm run css-build
-        npm run export
+    - run: npm ci
+    - run: npm run css-build
+    - run: npm run export
 
     - name: Deploy app
       env:
