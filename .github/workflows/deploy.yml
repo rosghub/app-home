@@ -31,4 +31,4 @@ jobs:
         echo "${KNOWN_HOSTS}" >> ~/.ssh/known_hosts
         echo "${PRIVATE_KEY}" > ~/.ssh/id_rsa
         chmod -R 700 ~/.ssh
-        rsync -avz --delete ./out "${DEST}"
+        rsync -avz --delete out "${DEST}"
