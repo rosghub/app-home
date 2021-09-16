@@ -18,9 +18,10 @@ jobs:
           node-version: 12
       
       - name: Build app
-        run: npm ci
-        run: npm run css-build
-        run: npm run export
+        run: |
+          npm ci
+          npm run css-build
+          npm run export
 
       - name: Deploy app
         env:
