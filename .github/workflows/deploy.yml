@@ -30,13 +30,10 @@ jobs:
           DEST: "/var/www/vps-home"
           HOST: "admin@rosghub.xyz"
         run: |
-          echo "Workflow line:"
-          grep -q "Workflows" "out/index.html" && echo exists
-          echo "Actions line:"
-          grep -q "Actions" "out/index.html" && echo exists
           mkdir -p ~/.ssh
           echo "${KNOWN_HOSTS}" >> ~/.ssh/known_hosts
           echo "${PRIVATE_KEY}" > ~/.ssh/id_rsa
           chmod -R 700 ~/.ssh
-          rsync -avz --delete out "${HOST}:${DEST}"
+          cd out
+          rsync -avz --delete . "${HOST}:${DEST}"
           ssh "${HOST}" 'sudo nginx -s reload'
