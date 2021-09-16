@@ -33,7 +33,7 @@ const apps: App[] = [
         desc: 'A directory site for my open source web apps.',
         repo: 'https://github.com/rosghub/app-home',
         tech: [ 'React', 'NextJS', 'Bulma' ],
-        host: 'Vultr (Nginx)',
+        host: 'Vultr VPS (Nginx)',
         link: 'rosghub.xyz',
         status: 'WIP',
         github: {
