@@ -28,9 +28,11 @@ jobs:
           PRIVATE_KEY: ${{ secrets.SSH_KEY }}
           KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
           DEST: "admin@rosghub.xyz:/var/www/vps-home"
+          HOST: "admin@rosghub.xyz"
         run: |
           mkdir -p ~/.ssh
           echo "${KNOWN_HOSTS}" >> ~/.ssh/known_hosts
           echo "${PRIVATE_KEY}" > ~/.ssh/id_rsa
           chmod -R 700 ~/.ssh
           rsync -avz --delete out "${DEST}"
+          ssh "${HOST}" 'echo "from github actions" > ~/test'
