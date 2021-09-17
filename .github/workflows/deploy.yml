@@ -35,5 +35,5 @@ jobs:
           echo "${PRIVATE_KEY}" > ~/.ssh/id_rsa
           chmod -R 700 ~/.ssh
           cd out
-          rsync -avz --delete . "${HOST}:${DEST}"
+          rsync -avz --delete . "${HOST}:${DEST}" && \
           ssh "${HOST}" 'sudo nginx -s reload'
