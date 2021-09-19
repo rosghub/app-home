@@ -5,6 +5,7 @@ import { App } from '../../data/apps';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import GithubLanguages from 'react-github-languages';
 
 import AppProperty, {
     APIResult,
@@ -25,11 +26,10 @@ const AppItem = ({ app }: AppProps) => {
     const langFetcher: AppPropertyFetcher = {
         apiEP: `https://api.github.com/repos/${owner}/${repo}/languages`,
         render: (data: APIResult) => {
-            return (<>
-                {Object.keys(data).map((l, i) => (
-                    <span className="tag is-rounded is-warning is-normal m-1" key={i}>{l}</span>
-                ))}
-            </>)
+            const langData = data as Record<string, number>;
+            return <GithubLanguages
+                data={langData}
+                className="mt-2 ml-2 mr-5 help"/>
         }
     };
 
