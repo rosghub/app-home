@@ -5,7 +5,7 @@ import { App } from '../../data/apps';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import GithubLanguages from 'react-github-languages';
+import GithubLanguages from '@rosghub/react-github-languages';
 
 import AppProperty, {
     APIResult,
