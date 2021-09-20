@@ -29,7 +29,7 @@ const AppItem = ({ app }: AppProps) => {
             const langData = data as Record<string, number>;
             return <GithubLanguages
                 data={langData}
-                className="mt-2 ml-2 mr-5 help"/>
+                className="mt-2 mr-5 help"/>
         }
     };
 
@@ -59,8 +59,7 @@ const AppItem = ({ app }: AppProps) => {
                 ? (<>
                     {result.workflows.map((w, i) => (
                         <a href={w.html_url} target="_blank" rel="noreferrer" key={i}>
-                            {/*<Image className="m-1" src={w.badge_url} />*/}
-                            <img className="m-1" src={w.badge_url} alt="wf_badge" />
+                            <img className="my-1 mr-2" src={w.badge_url} alt="wf_badge" />
                         </a>
                     ))}
                 </>)
@@ -90,7 +89,7 @@ const AppItem = ({ app }: AppProps) => {
 
                 <p><strong className="help mt-5">Built With</strong></p>
                 {app.tech.map((e, i) => (
-                    <span className="tag is-rounded is-info is-normal m-1" key={i}>{e}</span>
+                    <span className="tag is-rounded is-info is-normal my-1 mr-2" key={i}>{e}</span>
                 ))}
 
                 <AppProperty
@@ -98,8 +97,8 @@ const AppItem = ({ app }: AppProps) => {
                     labelClassName="mt-4"
                     appPropertyFetcher={langFetcher} />
 
-                <p><strong className="help mt-4">Hosted On</strong></p>
-                <span className="help ml-1 mb-2">{app.host}</span>
+                <p><strong className="help mt-4">Hosting</strong></p>
+                <span className="help mb-2">{app.host}</span>
 
                 <AppProperty
                     label="Github Actions"
