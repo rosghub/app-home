@@ -18,8 +18,11 @@ jobs:
           node-version: 12
 
       - name: Add auth token to .npmrc
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> .npmrc
+          echo "registry=https://npm.pkg.github.com/rosghub" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=$TOKEN" >> .npmrc
           cat .npmrc
       
       - name: Build app
