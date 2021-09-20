@@ -20,6 +20,7 @@ jobs:
       - name: Add auth token to .npmrc
         run: |
           echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> .npmrc
+          cat .npmrc
       
       - name: Build app
         run: |
