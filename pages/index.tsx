@@ -25,11 +25,11 @@ const Home: NextPage = () => {
                     <div className="container has-text-centered">
 
                         <h1 className="title">
-                            Web Application Directory
+                            Github Showcase
                         </h1>
 
                         <p className="subtitle">
-                            Welcome to the home of my personal web applications.
+                            Welcome to my Github showcase. Feel free to use, modify, or ask more about any project here.
                         </p>
 
                     </div>
