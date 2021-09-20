@@ -23,7 +23,6 @@ jobs:
         run: |
           echo "registry=https://npm.pkg.github.com/rosghub" > .npmrc
           echo "//npm.pkg.github.com/:_authToken=$TOKEN" >> .npmrc
-          cat .npmrc
       
       - name: Build app
         run: |
