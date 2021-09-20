@@ -99,7 +99,7 @@ const AppItem = ({ app }: AppProps) => {
                     appPropertyFetcher={langFetcher} />
 
                 <p><strong className="help mt-4">Hosted On</strong></p>
-                <span className="mb-2">{app.host}</span>
+                <span className="help ml-1 mb-2">{app.host}</span>
 
                 <AppProperty
                     label="Github Actions"
