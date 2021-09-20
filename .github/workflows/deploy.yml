@@ -21,7 +21,7 @@ jobs:
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "registry=https://npm.pkg.github.com/rosghub" > .npmrc
+          echo >> .npmrc
           echo "//npm.pkg.github.com/:_authToken=$TOKEN" >> .npmrc
       
       - name: Build app
