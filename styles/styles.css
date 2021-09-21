@@ -4180,7 +4180,7 @@ a.navbar-item,
   .navbar {
     min-height: 3.25rem; }
     .navbar.is-spaced {
-      padding: 0 10%; }
+      padding: 0 2rem; }
       .navbar.is-spaced .navbar-start,
       .navbar.is-spaced .navbar-end {
         align-items: center; }

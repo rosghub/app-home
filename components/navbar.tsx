@@ -11,7 +11,7 @@ const navbar = () => {
                 </a>
             </div>
 
-            <div className="navbar-end mr-4" style={{ display: 'flex' }}>
+            <div className="navbar-end mr-4">
                 <a href="https://github.com/rosghub" target="_blank" rel="noreferrer">
                     <span className="icon has-text-black">
                         <FontAwesomeIcon icon={faGithub} size="lg" />
