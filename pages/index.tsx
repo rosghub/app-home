@@ -23,15 +23,11 @@ const Home: NextPage = () => {
 
                 <section className="section">
                     <div className="container has-text-centered">
-
-                        <h1 className="title">
-                            Github Showcase
-                        </h1>
-
                         <p className="subtitle">
-                            Welcome to my Github showcase. Feel free to use, modify, or ask more about any project here.
+                            <strong>Welcome</strong><br/>
+                            This page serves as a directory for my work and a homepage for my VPS.<br/>
+                            Feel free to use, modify, or ask more about any projects here.
                         </p>
-
                     </div>
                 </section>
 
