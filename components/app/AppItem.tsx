@@ -29,7 +29,7 @@ const AppItem = ({ app }: AppProps) => {
             const langData = data as Record<string, number>;
             return <GithubLanguages
                 data={langData}
-                className="mt-2 mr-5 help"/>
+                className="mt-2 mr-2 help"/>
         }
     };
 
