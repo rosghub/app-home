@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 
 import Navbar from '../components/navbar';
 import AppItem from '../components/app/AppItem';
-import AggregateTech from '../components/AggregateTech';
+import FilterTech from '../components/FilterTech';
 
 import apps from '../data/apps';
 
@@ -34,13 +34,12 @@ const Home: NextPage = () => {
                 </section>
 
                 <section className="section">
-                    <div className="block has-text-centered">
-                        <p className="subtitle">Built with</p>
-                        <AggregateTech apps={apps} />
+                    <div className="container block">
+                        <p className="mb-2"><strong>Showing</strong></p>
+                        <FilterTech apps={apps} />
                     </div>
 
                     <div className="container">
-
 
                         <div className="columns">
                             {apps.map((app, i) => (
