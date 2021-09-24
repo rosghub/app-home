@@ -6,6 +6,7 @@ import styles from '../styles/Home.module.css'
 import Navbar from '../components/navbar';
 import AppItem from '../components/app/AppItem';
 import FilterTech from '../components/FilterTech';
+import FilterLangs from '../components/FilterLangs';
 
 import apps from '../data/apps';
 
@@ -51,7 +52,7 @@ const Home: NextPage = () => {
                         <FilterTech apps={apps} />
 
                         <p className="mt-4"><strong>Languages</strong></p>
-                        {langs.join(' | ')}
+                        <FilterLangs langs={langs} />
                     </div>
 
                     <div className="container">
