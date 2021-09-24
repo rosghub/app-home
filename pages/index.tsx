@@ -34,8 +34,9 @@ const Home: NextPage = () => {
                 </section>
 
                 <section className="section">
-                    <div className="container block">
-                        <p className="mb-2"><strong>Showing</strong></p>
+                    <div className="container" style={{marginBottom: '3rem'}}>
+                        <p><strong>Viewing projects built with</strong></p>
+                        <p className="help mb-2">Select tags to filter</p>
                         <FilterTech apps={apps} />
                     </div>
 
