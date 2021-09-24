@@ -1,6 +1,4 @@
 import React, { FC, useState } from 'react';
-import { App } from '../data/apps';
-import styles from './FilterTech.module.css';
 
 interface AggregateLangProps {
     langs: Array<string>
@@ -11,18 +9,16 @@ const FilterTech: FC<AggregateLangProps> = (props): JSX.Element => {
 
     const langs = ['All', ...props.langs];
 
-    const clickHandler = (e: React.MouseEvent<HTMLElement>) => {
-        const tag = e.currentTarget.textContent;
-        if (tag == null)
-            return;
+    const toggleLang = (index: number) => {
+        const l = langs[index];
 
-        if (tag == 'All') {
+        if (l == 'All') {
             // Clear selection
             setSelected(['All']);
         }
-        else if (selected.includes(tag)) {
+        else if (selected.includes(l)) {
             // Unselect
-            const selection = selected.filter(t => t != tag);
+            const selection = selected.filter(t => t != l);
             setSelected(selection.length > 0 ? selection : ['All']);
         }
         else {
@@ -30,7 +26,7 @@ const FilterTech: FC<AggregateLangProps> = (props): JSX.Element => {
             if (selected.length == 1 && selected[0] == 'All')
                 selected.pop();
 
-            setSelected([...selected, tag]);
+            setSelected([...selected, l]);
         }
     }
 
@@ -38,7 +34,10 @@ const FilterTech: FC<AggregateLangProps> = (props): JSX.Element => {
         {langs.map((l, i) => {
             return (
                 <label className="checkbox mx-2" key={i}>
-                    <input type="checkbox"/>
+                    <input
+                        type="checkbox"
+                        checked={selected.includes(l)}
+                        onChange={() => toggleLang(i)} />
                     {` ${l} `}
                 </label>
             )
@@ -47,11 +46,4 @@ const FilterTech: FC<AggregateLangProps> = (props): JSX.Element => {
     </>)
 }
 
-/*
-let classes = `tag is-rounded is-normal my-1 mr-2 ${styles.tag}`;
-if (selected.includes(l))
-    classes += ' is-info';
-
-return <span className={classes} onClick={clickHandler} key={i}>{l}</span>
-*/
 export default FilterTech;
