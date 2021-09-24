@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
@@ -10,6 +11,17 @@ import apps from '../data/apps';
 
 
 const Home: NextPage = () => {
+    const [langs, setLangs] = useState<Array<string>>([]);
+
+    const updateUniqueLanguages = (languages: Array<string>) => {
+        const unique = languages.filter(l => !langs.includes(l));
+        if (unique.length > 0) {
+            const merged = langs.slice();
+            merged.push(...unique);
+            setLangs(merged);
+        }
+    };
+
     return (
         <div className={styles.container}>
             <Head>
@@ -34,10 +46,12 @@ const Home: NextPage = () => {
                 </section>
 
                 <section className="section">
-                    <div className="container" style={{marginBottom: '3rem'}}>
-                        <p><strong>Viewing projects built with</strong></p>
-                        <p className="help mb-2">Select tags to filter</p>
+                    <div className="container" style={{ marginBottom: '3rem' }}>
+                        <p><strong>Libraries, frameworks, and databases</strong></p>
                         <FilterTech apps={apps} />
+
+                        <p className="mt-4"><strong>Languages</strong></p>
+                        {langs.join(' | ')}
                     </div>
 
                     <div className="container">
@@ -45,7 +59,7 @@ const Home: NextPage = () => {
                         <div className="columns">
                             {apps.map((app, i) => (
                                 <div className="column is-6" key={i}>
-                                    <AppItem app={app} />
+                                    <AppItem app={app} updateUniqueLanguages={updateUniqueLanguages} />
                                 </div>
                             ))}
                         </div>

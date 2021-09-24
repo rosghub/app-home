@@ -17,9 +17,10 @@ import AppProperty, {
 
 type AppProps = {
     app: App
+    updateUniqueLanguages: (languages: Array<string>) => void
 }
 
-const AppItem = ({ app }: AppProps) => {
+const AppItem = ({ app, updateUniqueLanguages }: AppProps) => {
 
     const { owner, repo } = app.github || {};
 
@@ -27,6 +28,7 @@ const AppItem = ({ app }: AppProps) => {
         apiEP: `https://api.github.com/repos/${owner}/${repo}/languages`,
         render: (data: APIResult) => {
             const langData = data as Record<string, number>;
+            updateUniqueLanguages(Object.keys(langData));
             return <GithubLanguages
                 data={langData}
                 className="mt-2 mr-2 help"/>
