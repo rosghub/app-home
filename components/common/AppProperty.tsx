@@ -1,6 +1,4 @@
 import React, { FC } from 'react';
-import useSWR from 'swr';
-import { fetcher } from '../../utils/utils';
 
 type AppPropertyProps = {
     isLoading: boolean,

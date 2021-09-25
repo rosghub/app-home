@@ -6,7 +6,7 @@ export type App = {
     host: string,
     link?: string,
     status: string,
-    github?: Github
+    github: Github
 };
 
 export type Github = {

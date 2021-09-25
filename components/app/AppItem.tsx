@@ -22,15 +22,12 @@ type AppProps = {
 }
 
 const AppItem = ({ app }: AppProps) => {
-    const { addAppLangs } = useFilterContext();
-
     const { owner, repo } = app.github || {};
 
     const langFetcher: AppPropertyFetcher = {
         apiEP: `https://api.github.com/repos/${owner}/${repo}/languages`,
         render: (data: APIResult) => {
             const langData = data as Record<string, number>;
-            addAppLangs(app.name, Object.keys(langData));
 
             return <GithubLanguages
                 data={langData}
