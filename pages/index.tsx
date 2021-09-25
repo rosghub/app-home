@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FC } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
@@ -8,22 +8,14 @@ import AppItem from '../components/app/AppItem';
 import FilterTech from '../components/FilterTech';
 import FilterLangs from '../components/FilterLangs';
 
-import { FilterProivder } from '../context/FilterContext';
+import { FilterProivder, useFilterContext } from '../context/FilterContext';
 
 import apps from '../data/apps';
 
 
-const Home: NextPage = () => {
-    const [langs, setLangs] = useState<Array<string>>([]);
+const Home: FC = () => {
 
-    const updateUniqueLanguages = (languages: Array<string>) => {
-        const unique = languages.filter(l => !langs.includes(l));
-        if (unique.length > 0) {
-            const merged = langs.slice();
-            merged.push(...unique);
-            setLangs(merged);
-        }
-    };
+    const { uniqueLangs, filterTech, addUniqueLanguages } = useFilterContext();
 
     return (
         <div className={styles.container}>
@@ -38,44 +30,46 @@ const Home: NextPage = () => {
 
                 <Navbar />
 
-                <FilterProivder>
+                <section className="section">
+                    <div className="container has-text-centered">
+                        <p className="subtitle">
+                            <strong>Welcome</strong><br />
+                            This page serves as a directory for my work and a homepage for my VPS.<br />
+                            Feel free to use, modify, or ask more about any projects here.
+                        </p>
+                    </div>
+                </section>
 
-                    <section className="section">
-                        <div className="container has-text-centered">
-                            <p className="subtitle">
-                                <strong>Welcome</strong><br />
-                                This page serves as a directory for my work and a homepage for my VPS.<br />
-                                Feel free to use, modify, or ask more about any projects here.
-                            </p>
+                <section className="section">
+                    <div className="container" style={{ marginBottom: '3rem' }}>
+                        <p><strong>Libraries, frameworks, and databases</strong></p>
+                        <FilterTech apps={apps} />
+
+                        <p className="mt-4"><strong>Languages</strong></p>
+                        <FilterLangs langs={uniqueLangs} />
+                    </div>
+
+                    <div className="container">
+
+                        <div className="columns">
+                            {apps.map((app, i) => (
+                                <div className="column is-6" key={i}>
+                                    <AppItem app={app} updateUniqueLanguages={addUniqueLanguages} />
+                                </div>
+                            ))}
                         </div>
-                    </section>
 
-                    <section className="section">
-                        <div className="container" style={{ marginBottom: '3rem' }}>
-                            <p><strong>Libraries, frameworks, and databases</strong></p>
-                            <FilterTech apps={apps} />
+                    </div>
+                </section>
 
-                            <p className="mt-4"><strong>Languages</strong></p>
-                            <FilterLangs langs={langs} />
-                        </div>
-
-                        <div className="container">
-
-                            <div className="columns">
-                                {apps.map((app, i) => (
-                                    <div className="column is-6" key={i}>
-                                        <AppItem app={app} updateUniqueLanguages={updateUniqueLanguages} />
-                                    </div>
-                                ))}
-                            </div>
-
-                        </div>
-                    </section>
-
-                </FilterProivder>
             </body>
         </div>
     )
 }
 
-export default Home
+
+const HomeWrapper: NextPage = () => {
+    return <FilterProivder><Home /></FilterProivder>
+}
+
+export default HomeWrapper;

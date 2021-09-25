@@ -2,15 +2,19 @@ import React, { createContext, useContext, useState } from 'react'
 
 export type FilterContextState = {
     uniqueLangs: Array<string>
-    filterLangs: Array<string>
-    filterTech: Array<string>
+    filterLangs: Array<string>,
+    setFilterLangs: (filterLangs: Array<string>) => void,
+    filterTech: Array<string>,
+    setFilterTech: (filterTech: Array<string>) => void,
     addUniqueLanguages: (langs: Array<string>) => void
 }
 
 const filterContext = createContext<FilterContextState>({
     uniqueLangs: [],
     filterLangs: ['All'],
+    setFilterLangs: () => {},
     filterTech: ['All'],
+    setFilterTech: () => {},
     addUniqueLanguages: () => {}
 });
 
@@ -31,7 +35,9 @@ export const FilterProivder: React.FC = ({ children }) => {
     const value = {
         uniqueLangs,
         filterLangs,
+        setFilterLangs,
         filterTech,
+        setFilterTech,
         addUniqueLanguages
     };
 
