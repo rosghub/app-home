@@ -9,13 +9,13 @@ import GithubLanguages from '@rosghub/react-github-languages';
 
 import { useFilterContext } from '../../context/FilterContext'
 
-import AppProperty, {
+import RemoteAppProperty, {
     APIResult,
     AppPropertyFetcher,
     ContributorAPIResult,
     RepoAPIResult,
     WorkflowAPIResult
-} from '../common/AppProperty';
+} from '../common/RemoteAppProperty';
 
 type AppProps = {
     app: App
@@ -97,7 +97,7 @@ const AppItem = ({ app }: AppProps) => {
                     <span className="tag is-rounded is-info is-normal my-1 mr-2" key={i}>{e}</span>
                 ))}
 
-                <AppProperty
+                <RemoteAppProperty
                     label="Languages"
                     labelClassName="mt-4"
                     appPropertyFetcher={langFetcher} />
@@ -105,7 +105,7 @@ const AppItem = ({ app }: AppProps) => {
                 <p><strong className="help mt-4">Hosting</strong></p>
                 <span className="help mb-2">{app.host}</span>
 
-                <AppProperty
+                <RemoteAppProperty
                     label="Github Actions"
                     labelClassName="mt-4"
                     appPropertyFetcher={ghaFetcher} />
@@ -115,7 +115,7 @@ const AppItem = ({ app }: AppProps) => {
                 <div className="level has-text-centered">
                     <div className="level-item">
                         <div>
-                            <AppProperty
+                            <RemoteAppProperty
                                 label="Commits"
                                 appPropertyFetcher={commitCountFetcher} />
                         </div>
@@ -123,7 +123,7 @@ const AppItem = ({ app }: AppProps) => {
 
                     <div className="level-item">
                         <div>
-                            <AppProperty
+                            <RemoteAppProperty
                                 label="Last Updated"
                                 appPropertyFetcher={lastCommitFetcher} />
                         </div>
