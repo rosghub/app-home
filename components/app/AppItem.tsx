@@ -7,6 +7,8 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import GithubLanguages from '@rosghub/react-github-languages';
 
+import { useFilterContext } from '../../context/FilterContext'
+
 import AppProperty, {
     APIResult,
     AppPropertyFetcher,
@@ -17,10 +19,10 @@ import AppProperty, {
 
 type AppProps = {
     app: App
-    updateUniqueLanguages: (languages: Array<string>) => void
 }
 
-const AppItem = ({ app, updateUniqueLanguages }: AppProps) => {
+const AppItem = ({ app }: AppProps) => {
+    const { addAppLangs } = useFilterContext();
 
     const { owner, repo } = app.github || {};
 
@@ -28,7 +30,8 @@ const AppItem = ({ app, updateUniqueLanguages }: AppProps) => {
         apiEP: `https://api.github.com/repos/${owner}/${repo}/languages`,
         render: (data: APIResult) => {
             const langData = data as Record<string, number>;
-            updateUniqueLanguages(Object.keys(langData));
+            addAppLangs(app.name, Object.keys(langData));
+
             return <GithubLanguages
                 data={langData}
                 className="mt-2 mr-2 help"/>

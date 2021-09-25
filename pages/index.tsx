@@ -16,7 +16,7 @@ import apps from '../data/apps';
 
 const Home: FC = () => {
 
-    const { uniqueLangs, filterTech, addUniqueLanguages } = useFilterContext();
+    const { uniqueLangs, filterTech } = useFilterContext();
 
     return (
         <div className={styles.container}>
@@ -41,30 +41,27 @@ const Home: FC = () => {
                     </div>
                 </section>
 
-                <section className="section">
-                    <div className="container" style={{ marginBottom: '3rem' }}>
-                        <p><strong>Libraries, frameworks, and databases</strong></p>
-                        <FilterTech apps={apps} />
+                <FilterProivder>
+                    <section className="section">
+                        <div className="container" style={{ marginBottom: '3rem' }}>
+                            <p><strong>Libraries, frameworks, and databases</strong></p>
+                            <FilterTech apps={apps} />
 
-                        <p className="mt-4"><strong>Languages</strong></p>
-                        <FilterLangs />
-                    </div>
+                            <p className="mt-4"><strong>Languages</strong></p>
+                            <FilterLangs />
+                        </div>
 
-                    <div className="container">
+                        <div className="container">
 
-                        <AppList apps={apps} />
+                            <AppList apps={apps} />
 
-                    </div>
-                </section>
+                        </div>
+                    </section>
+                </FilterProivder>
 
             </body>
         </div>
     )
 }
 
-
-const HomeWrapper: NextPage = () => {
-    return <FilterProivder><Home /></FilterProivder>
-}
-
-export default HomeWrapper;
+export default Home;

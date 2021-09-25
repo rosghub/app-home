@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useState } from 'react'
 
 export type FilterContextState = {
-    uniqueLangs: Array<string>
-    filterLangs: Array<string>,
-    setFilterLangs: (filterLangs: Array<string>) => void,
-    filterTech: Array<string>,
-    setFilterTech: (filterTech: Array<string>) => void,
-    addUniqueLanguages: (langs: Array<string>) => void
+    uniqueLangs: string[]
+    filterLangs: string[]
+    setFilterLangs: (filterLangs: string[]) => void
+    filterTech: string[]
+    setFilterTech: (filterTech: string[]) => void
+    appLangs: Record<string, string[]>
+    addAppLangs: (appName: string, langs: string[]) => void
 }
 
 const filterContext = createContext<FilterContextState>({
@@ -15,15 +16,17 @@ const filterContext = createContext<FilterContextState>({
     setFilterLangs: () => {},
     filterTech: ['All'],
     setFilterTech: () => {},
-    addUniqueLanguages: () => {}
+    appLangs: {},
+    addAppLangs: () => {},
 });
 
 export const FilterProivder: React.FC = ({ children }) => {
-    const [ uniqueLangs, setUniqueLangs ] = useState<Array<string>>([]);
-    const [ filterLangs, setFilterLangs ] = useState<Array<string>>(['All']);
-    const [ filterTech, setFilterTech ] = useState<Array<string>>(['All']);
+    const [ uniqueLangs, setUniqueLangs ] = useState<string[]>([]);
+    const [ filterLangs, setFilterLangs ] = useState<string[]>(['All']);
+    const [ filterTech, setFilterTech ] = useState<string[]>(['All']);
+    const [ appLangs, setAppLangs ] = useState<Record<string, string[]>>({});
 
-    const addUniqueLanguages = (languages: Array<string>) => {
+    const addUniqueLanguages = (languages: string[]) => {
         const unique = languages.filter(l => !uniqueLangs.includes(l));
         if (unique.length > 0) {
             const merged = uniqueLangs.slice();
@@ -32,14 +35,25 @@ export const FilterProivder: React.FC = ({ children }) => {
         }
     };
 
+    const addAppLangs = (appName: string, langs: string[]) => {
+        /*
+        const newAppLangs = { ...appLangs };
+        newAppLangs[appName] = langs;
+        setAppLangs(newAppLangs);
+        */
+
+        addUniqueLanguages(langs);
+    }
+
     const value = {
         uniqueLangs,
         filterLangs,
         setFilterLangs,
         filterTech,
         setFilterTech,
-        addUniqueLanguages
-    };
+        appLangs,
+        addAppLangs
+    }
 
     return (
         <filterContext.Provider value={value}>

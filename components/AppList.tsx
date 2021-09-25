@@ -8,7 +8,7 @@ interface AppListProps {
 }
 
 const AppList: FC<AppListProps> = ({ apps }) => {
-    const { filterTech, filterLangs, addUniqueLanguages } = useFilterContext();
+    const { filterTech, filterLangs } = useFilterContext();
 
     let filteredApps = apps;
     if (filterTech.length > 1 || filterTech[0] != 'All')
@@ -22,7 +22,7 @@ const AppList: FC<AppListProps> = ({ apps }) => {
         <div className="columns">
             {filteredApps.map((app, i) => (
                 <div className="column is-6" key={i}>
-                    <AppItem app={app} updateUniqueLanguages={addUniqueLanguages} />
+                    <AppItem app={app} />
                 </div>
             ))}
         </div>
