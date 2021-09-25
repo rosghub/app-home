@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
+import AppList from '../components/AppList'
 import Navbar from '../components/navbar';
 import AppItem from '../components/app/AppItem';
 import FilterTech from '../components/FilterTech';
@@ -51,13 +52,7 @@ const Home: FC = () => {
 
                     <div className="container">
 
-                        <div className="columns">
-                            {apps.map((app, i) => (
-                                <div className="column is-6" key={i}>
-                                    <AppItem app={app} updateUniqueLanguages={addUniqueLanguages} />
-                                </div>
-                            ))}
-                        </div>
+                        <AppList apps={apps} />
 
                     </div>
                 </section>
