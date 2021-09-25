@@ -1,6 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { App } from '../data/apps';
 import styles from './FilterTech.module.css';
+
+import { useFilterContext } from '../context/FilterContext'
 
 interface AggregateTechProps {
     apps: App[],
@@ -15,7 +17,7 @@ function getTags(apps: App[]): string[] {
 }
 
 const FilterTech: FC<AggregateTechProps> = (props): JSX.Element => {
-    const [selected, setSelected] = useState<Array<string>>(['All']);
+    const { filterTech, setFilterTech } = useFilterContext();
 
     const tags = getTags(props.apps);
 
@@ -26,26 +28,26 @@ const FilterTech: FC<AggregateTechProps> = (props): JSX.Element => {
 
         if (tag == 'All') {
             // Clear selection
-            setSelected(['All']);
+            setFilterTech(['All']);
         }
-        else if (selected.includes(tag)) {
+        else if (filterTech.includes(tag)) {
             // Unselect
-            const selection = selected.filter(t => t != tag);
-            setSelected(selection.length > 0 ? selection : ['All']);
+            const selection = filterTech.filter(t => t != tag);
+            setFilterTech(selection.length > 0 ? selection : ['All']);
         }
         else {
             // Select
-            if (selected.length == 1 && selected[0] == 'All')
-                selected.pop();
+            if (filterTech.length == 1 && filterTech[0] == 'All')
+                filterTech.pop();
 
-            setSelected([...selected, tag]);
+            setFilterTech([...filterTech, tag]);
         }
     }
 
     return (<>
         {tags.map((t, i) => {
             let classes = `tag is-rounded is-normal my-1 mr-2 ${styles.tag}`;
-            if (selected.includes(t))
+            if (filterTech.includes(t))
                 classes += ' is-info';
 
             return <span className={classes} onClick={clickHandler} key={i}>{t}</span>

@@ -46,7 +46,7 @@ const Home: FC = () => {
                         <FilterTech apps={apps} />
 
                         <p className="mt-4"><strong>Languages</strong></p>
-                        <FilterLangs langs={uniqueLangs} />
+                        <FilterLangs />
                     </div>
 
                     <div className="container">

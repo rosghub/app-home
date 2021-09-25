@@ -1,11 +1,7 @@
 import React, { FC } from 'react';
 import { useFilterContext } from '../context/FilterContext';
 
-interface AggregateLangProps {
-    langs: Array<string>
-}
-
-const FilterTech: FC<AggregateLangProps> = (props): JSX.Element => {
+const FilterTech: FC = (): JSX.Element => {
     const { uniqueLangs, filterLangs, setFilterLangs } = useFilterContext();
 
     const langs = ['All', ...uniqueLangs];
