@@ -8,6 +8,8 @@ import AppItem from '../components/app/AppItem';
 import FilterTech from '../components/FilterTech';
 import FilterLangs from '../components/FilterLangs';
 
+import { FilterProivder } from '../context/FilterContext';
+
 import apps from '../data/apps';
 
 
@@ -36,37 +38,41 @@ const Home: NextPage = () => {
 
                 <Navbar />
 
-                <section className="section">
-                    <div className="container has-text-centered">
-                        <p className="subtitle">
-                            <strong>Welcome</strong><br />
-                            This page serves as a directory for my work and a homepage for my VPS.<br />
-                            Feel free to use, modify, or ask more about any projects here.
-                        </p>
-                    </div>
-                </section>
+                <FilterProivder>
 
-                <section className="section">
-                    <div className="container" style={{ marginBottom: '3rem' }}>
-                        <p><strong>Libraries, frameworks, and databases</strong></p>
-                        <FilterTech apps={apps} />
+                    <section className="section">
+                        <div className="container has-text-centered">
+                            <p className="subtitle">
+                                <strong>Welcome</strong><br />
+                                This page serves as a directory for my work and a homepage for my VPS.<br />
+                                Feel free to use, modify, or ask more about any projects here.
+                            </p>
+                        </div>
+                    </section>
 
-                        <p className="mt-4"><strong>Languages</strong></p>
-                        <FilterLangs langs={langs} />
-                    </div>
+                    <section className="section">
+                        <div className="container" style={{ marginBottom: '3rem' }}>
+                            <p><strong>Libraries, frameworks, and databases</strong></p>
+                            <FilterTech apps={apps} />
 
-                    <div className="container">
-
-                        <div className="columns">
-                            {apps.map((app, i) => (
-                                <div className="column is-6" key={i}>
-                                    <AppItem app={app} updateUniqueLanguages={updateUniqueLanguages} />
-                                </div>
-                            ))}
+                            <p className="mt-4"><strong>Languages</strong></p>
+                            <FilterLangs langs={langs} />
                         </div>
 
-                    </div>
-                </section>
+                        <div className="container">
+
+                            <div className="columns">
+                                {apps.map((app, i) => (
+                                    <div className="column is-6" key={i}>
+                                        <AppItem app={app} updateUniqueLanguages={updateUniqueLanguages} />
+                                    </div>
+                                ))}
+                            </div>
+
+                        </div>
+                    </section>
+
+                </FilterProivder>
             </body>
         </div>
     )
