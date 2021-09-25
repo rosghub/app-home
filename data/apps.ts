@@ -19,7 +19,7 @@ const apps: App[] = [
         name: 'One Time Secret',
         desc: 'Secure way to share secrets. Generate a disposable one-time use link to share an encrypted secret.',
         repo: 'https://github.com/rosghub/one-time-secret',
-        tech: [ 'NodeJS', 'Express', 'MongoDB', 'Bulma' ],
+        tech: ['NodeJS', 'Express', 'MongoDB', 'Bulma'],
         host: 'Vultr VPS (Nginx reverse proxy to express server)',
         link: 'secrets.rosghub.xyz',
         status: 'Complete',
@@ -32,7 +32,7 @@ const apps: App[] = [
         name: 'This Site',
         desc: 'A directory site for my open source web apps.',
         repo: 'https://github.com/rosghub/app-home',
-        tech: [ 'React', 'NextJS', 'Bulma' ],
+        tech: ['React', 'NextJS', 'Bulma'],
         host: 'Vultr VPS (Nginx)',
         link: 'rosghub.xyz',
         status: 'WIP',
@@ -42,5 +42,13 @@ const apps: App[] = [
         }
     }
 ];
+
+export const uniqueTech: string[] = (() => {
+    const unique: Array<string> = [];
+    apps.forEach(app => {
+        unique.push(...app.tech.filter(t => unique.indexOf(t) == -1))
+    });
+    return unique;
+})()
 
 export default apps;
