@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import apps from '../data/apps';
 import { batchFetch } from '../utils/utils';
 import useSWR from 'swr';
+import { isLocalURL } from 'next/dist/shared/lib/router/router';
 
 export type FilterContextState = {
     uniqueLangs: string[]
@@ -52,34 +53,18 @@ export const FilterProivder: React.FC = ({ children }) => {
 
     const { isLoading: langsLoading, langs } = useLangs();
 
-    if (!langsLoading) {
-        const newUnique: string[] = [];
-        Object.keys(langs).forEach(app => {
-            const unique = langs[app].filter(l => !newUnique.includes(l));
-            newUnique.push(...unique);
-        });
-        setUniqueLangs(newUnique);
-        setAppLangs(langs);
-    }
 
-    /*
-    const addUniqueLanguages = (languages: string[]) => {
-        const unique = languages.filter(l => !uniqueLangs.includes(l));
-        if (unique.length > 0) {
-            const merged = uniqueLangs.slice();
-            merged.push(...unique);
-            setUniqueLangs(merged);
+    useEffect(() => {
+        if (!langsLoading) {
+            const newUnique: string[] = [];
+            Object.keys(langs).forEach(app => {
+                const unique = langs[app].filter(l => !newUnique.includes(l));
+                newUnique.push(...unique);
+            });
+            setUniqueLangs(newUnique);
+            setAppLangs(langs)
         }
-    };
-
-    const addAppLangs = (appName: string, langs: string[]) => {
-        //const newAppLangs = { ...appLangs };
-        //newAppLangs[appName] = langs;
-        //setAppLangs(newAppLangs);
-
-        addUniqueLanguages(langs);
-    }
-    */
+    }, [langsLoading]);
 
     const value = {
         uniqueLangs,
