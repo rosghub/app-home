@@ -11,18 +11,15 @@ const FilterTech: FC = (): JSX.Element => {
 
         if (l == 'All') {
             // Clear selection
-            setFilterLangs(['All']);
+            setFilterLangs([]);
         }
         else if (filterLangs.includes(l)) {
             // Unselect
             const selection = filterLangs.filter(t => t != l);
-            setFilterLangs(selection.length > 0 ? selection : ['All']);
+            setFilterLangs(selection.length > 0 ? selection : []);
         }
         else {
             // Select
-            if (filterLangs.length == 1 && filterLangs[0] == 'All')
-                filterLangs.pop();
-
             setFilterLangs([...filterLangs, l]);
         }
     }
@@ -33,12 +30,11 @@ const FilterTech: FC = (): JSX.Element => {
                 <label className="checkbox mx-2" key={i}>
                     <input
                         type="checkbox"
-                        checked={filterLangs.includes(l)}
+                        checked={(filterLangs.length + i) == 0 || filterLangs.includes(l)}
                         onChange={() => toggleLang(i)} />
                     {` ${l} `}
                 </label>
             )
-
         })}
     </>)
 }

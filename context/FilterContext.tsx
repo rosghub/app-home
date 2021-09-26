@@ -2,7 +2,6 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import apps from '../data/apps';
 import { batchFetch } from '../utils/utils';
 import useSWR from 'swr';
-import { isLocalURL } from 'next/dist/shared/lib/router/router';
 
 export type FilterContextState = {
     uniqueLangs: string[]
@@ -15,9 +14,9 @@ export type FilterContextState = {
 
 const filterContext = createContext<FilterContextState>({
     uniqueLangs: [],
-    filterLangs: ['All'],
+    filterLangs: [],
     setFilterLangs: () => { },
-    filterTech: ['All'],
+    filterTech: [],
     setFilterTech: () => { },
     appLangs: {}
 });
@@ -47,12 +46,11 @@ const useLangs = () => {
 
 export const FilterProivder: React.FC = ({ children }) => {
     const [uniqueLangs, setUniqueLangs] = useState<string[]>([]);
-    const [filterLangs, setFilterLangs] = useState<string[]>(['All']);
-    const [filterTech, setFilterTech] = useState<string[]>(['All']);
     const [appLangs, setAppLangs] = useState<Record<string, string[]>>({});
+    const [filterLangs, setFilterLangs] = useState<string[]>([]);
+    const [filterTech, setFilterTech] = useState<string[]>([]);
 
     const { isLoading: langsLoading, langs } = useLangs();
-
 
     useEffect(() => {
         if (!langsLoading) {

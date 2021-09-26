@@ -20,18 +20,15 @@ const FilterTech: FC<AggregateTechProps> = (props): JSX.Element => {
 
         if (tag == 'All') {
             // Clear selection
-            setFilterTech(['All']);
+            setFilterTech([]);
         }
         else if (filterTech.includes(tag)) {
             // Unselect
             const selection = filterTech.filter(t => t != tag);
-            setFilterTech(selection.length > 0 ? selection : ['All']);
+            setFilterTech(selection.length > 0 ? selection : []);
         }
         else {
             // Select
-            if (filterTech.length == 1 && filterTech[0] == 'All')
-                filterTech.pop();
-
             setFilterTech([...filterTech, tag]);
         }
     }
@@ -39,7 +36,7 @@ const FilterTech: FC<AggregateTechProps> = (props): JSX.Element => {
     return (<>
         {tags.map((t, i) => {
             let classes = `tag is-rounded is-normal my-1 mr-2 ${styles.tag}`;
-            if (filterTech.includes(t))
+            if ((filterTech.length + i == 0) || filterTech.includes(t))
                 classes += ' is-info';
 
             return <span className={classes} onClick={clickHandler} key={i}>{t}</span>

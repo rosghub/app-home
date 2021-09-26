@@ -11,10 +11,11 @@ const AppList: FC<AppListProps> = ({ apps }) => {
     const { filterTech, filterLangs } = useFilterContext();
 
     let filteredApps = apps;
-    if (filterTech.length > 1 || filterTech[0] != 'All')
+    if (filterTech.length > 0) {
         filteredApps = filteredApps.filter(app => {
             return app.tech.some(t => filterTech.includes(t))
         });
+    }
 
     // todo langs
 
