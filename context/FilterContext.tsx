@@ -1,11 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import apps from '../data/apps';
+import apps, { App, uniqueTech } from '../data/apps';
 import { batchFetch } from '../utils/utils';
 import useSWR from 'swr';
 
 export type FilterContextState = {
     uniqueLangs: string[]
     filterLangs: string[]
+    relevantLangs: string[]
+    relevantTech: string[]
     setFilterLangs: (filterLangs: string[]) => void
     filterTech: string[]
     setFilterTech: (filterTech: string[]) => void
@@ -15,6 +17,8 @@ export type FilterContextState = {
 const filterContext = createContext<FilterContextState>({
     uniqueLangs: [],
     filterLangs: [],
+    relevantLangs: [],
+    relevantTech: [],
     setFilterLangs: () => { },
     filterTech: [],
     setFilterTech: () => { },
@@ -44,11 +48,14 @@ const useLangs = () => {
     }
 }
 
+
 export const FilterProivder: React.FC = ({ children }) => {
     const [uniqueLangs, setUniqueLangs] = useState<string[]>([]);
+    const [relevantLangs, setRelevantLangs] = useState<string[]>([]);
+    const [relevantTech, setRelevantTech] = useState<string[]>(uniqueTech);
     const [appLangs, setAppLangs] = useState<Record<string, string[]>>({});
-    const [filterLangs, setFilterLangs] = useState<string[]>([]);
-    const [filterTech, setFilterTech] = useState<string[]>([]);
+    const [filterLangs, _setFilterLangs] = useState<string[]>([]);
+    const [filterTech, _setFilterTech] = useState<string[]>([]);
 
     const { isLoading: langsLoading, langs } = useLangs();
 
@@ -60,21 +67,30 @@ export const FilterProivder: React.FC = ({ children }) => {
                 newUnique.push(...unique);
             });
             setUniqueLangs(newUnique);
+            setRelevantLangs(newUnique);
             setAppLangs(langs)
         }
     }, [langsLoading]);
 
-    const value = {
-        uniqueLangs,
-        filterLangs,
-        setFilterLangs,
-        filterTech,
-        setFilterTech,
-        appLangs
+    const setFilterTech = (newFilterTech: string[]) => {
+        _setFilterTech(newFilterTech);
+    }
+
+    const setFilterLangs = (newFilterLangs: string[]) => {
+        _setFilterLangs(newFilterLangs);
     }
 
     return (
-        <filterContext.Provider value={value}>
+        <filterContext.Provider value={{
+            uniqueLangs,
+            filterLangs,
+            relevantLangs,
+            relevantTech,
+            setFilterLangs,
+            filterTech,
+            setFilterTech,
+            appLangs
+        }}>
             {children}
         </filterContext.Provider>
     )

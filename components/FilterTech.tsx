@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { App, uniqueTech } from '../data/apps';
+import { App } from '../data/apps';
 import styles from './FilterTech.module.css';
 
 import { useFilterContext } from '../context/FilterContext'
@@ -9,9 +9,9 @@ interface AggregateTechProps {
 }
 
 const FilterTech: FC<AggregateTechProps> = (props): JSX.Element => {
-    const { filterTech, setFilterTech } = useFilterContext();
+    const { relevantTech, filterTech, setFilterTech } = useFilterContext();
 
-    const tags = ['All', ...uniqueTech];
+    const tags = ['All', ...relevantTech];
 
     const clickHandler = (e: React.MouseEvent<HTMLElement>) => {
         const tag = e.currentTarget.textContent;

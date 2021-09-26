@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import { useFilterContext } from '../context/FilterContext';
 
 const FilterTech: FC = (): JSX.Element => {
-    const { uniqueLangs, filterLangs, setFilterLangs } = useFilterContext();
+    const { relevantLangs, filterLangs, setFilterLangs } = useFilterContext();
 
-    const langs = ['All', ...uniqueLangs];
+    const langs = ['All', ...relevantLangs];
 
     const toggleLang = (index: number) => {
         const l = langs[index];
