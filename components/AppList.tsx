@@ -8,13 +8,20 @@ interface AppListProps {
 }
 
 const AppList: FC<AppListProps> = ({ apps }) => {
-    const { filterTech, filterLangs } = useFilterContext();
+    const { filterTech, filterLangs, appLangs } = useFilterContext();
 
     let filteredApps = apps;
+
     if (filterTech.length > 0) {
         filteredApps = filteredApps.filter(app => {
-            return app.tech.some(t => filterTech.includes(t))
+            return app.tech.some(t => filterTech.includes(t));
         });
+    }
+
+    if (filterLangs.length > 0) {
+        filteredApps = filteredApps.filter(app => {
+            return appLangs[app.name].some(l => filterLangs.includes(l));
+        })
     }
 
     // todo langs
