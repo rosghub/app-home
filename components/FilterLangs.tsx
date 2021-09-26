@@ -30,6 +30,7 @@ const FilterTech: FC = (): JSX.Element => {
                 <label className="checkbox mx-2" key={i}>
                     <input
                         type="checkbox"
+                        style={{ verticalAlign: 'bottom' }}
                         checked={(filterLangs.length + i) == 0 || filterLangs.includes(l)}
                         onChange={() => toggleLang(i)} />
                     {` ${l} `}
