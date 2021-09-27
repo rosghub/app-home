@@ -46,9 +46,7 @@ const useLangs = () => {
     }
 }
 
-function getAvailableTech(
-    filteredApps: App[]
-): string[] {
+function getAvailableTech(filteredApps: App[]): string[] {
     const unique: Array<string> = [];
     filteredApps.forEach(app => {
         unique.push(...app.tech.filter(t => unique.indexOf(t) == -1))
@@ -56,10 +54,7 @@ function getAvailableTech(
     return unique;
 }
 
-function getAvailableLangs(
-    filteredApps: App[],
-    appLangs: Record<string, string[]>
-): string[] {
+function getAvailableLangs(filteredApps: App[], appLangs: Record<string, string[]>): string[] {
     const unique: string[] = [];
     filteredApps.forEach(({ name }) => {
         const u = appLangs[name]?.filter(l => !unique.includes(l));
@@ -70,18 +65,11 @@ function getAvailableLangs(
 }
 
 export const FilterProvider: React.FC = ({ children }) => {
-    //const [appLangs, setAppLangs] = useState<Record<string, string[]>>({});
     const [filterLangs, setFilterLangs] = useState<string[]>([]);
     const [filterTech, setFilterTech] = useState<string[]>([]);
 
     const { isLoading: isLoadingLangs, langs } = useLangs();
-/*
-    useEffect(() => {
-        if (!isLoadingLangs)
-            setAppLangs(langs)
 
-    }, [isLoadingLangs]);
-*/
     let filteredApps = apps;
 
     if (filterTech.length > 0) {
