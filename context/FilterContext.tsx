@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import apps, { App, uniqueTech } from '../data/apps';
+import apps, { App } from '../data/apps';
 import { batchFetch } from '../utils/utils';
 import useSWR from 'swr';
 

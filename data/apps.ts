@@ -43,12 +43,4 @@ const apps: App[] = [
     }
 ];
 
-export const uniqueTech: string[] = (() => {
-    const unique: Array<string> = [];
-    apps.forEach(app => {
-        unique.push(...app.tech.filter(t => unique.indexOf(t) == -1))
-    });
-    return unique;
-})()
-
 export default apps;
