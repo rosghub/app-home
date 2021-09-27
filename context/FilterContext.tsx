@@ -11,7 +11,8 @@ export type FilterContextState = {
     setFilterLangs: (filterLangs: string[]) => void
     filterTech: string[]
     setFilterTech: (filterTech: string[]) => void
-    appLangs: Record<string, string[]>
+    appLangs: Record<string, string[]>,
+    filteredApps: App[]
 }
 
 const filterContext = createContext<FilterContextState>({
@@ -22,7 +23,8 @@ const filterContext = createContext<FilterContextState>({
     setFilterLangs: () => { },
     filterTech: [],
     setFilterTech: () => { },
-    appLangs: {}
+    appLangs: {},
+    filteredApps: apps
 });
 
 const useLangs = () => {
@@ -48,14 +50,33 @@ const useLangs = () => {
     }
 }
 
+function getAvailableTech(
+    filteredApps: App[]
+): string[] {
+    const unique: Array<string> = [];
+    filteredApps.forEach(app => {
+        unique.push(...app.tech.filter(t => unique.indexOf(t) == -1))
+    });
+    return unique;
+}
+
+function getAvailableLangs(
+    filteredApps: App[],
+    appLangs: Record<string, string[]>
+): string[] {
+    const unique: string[] = [];
+    filteredApps.forEach(({ name })=> {
+        const u = appLangs[name].filter(l => !unique.includes(l));
+        unique.push(...u);
+    });
+    return unique;
+}
 
 export const FilterProivder: React.FC = ({ children }) => {
     const [uniqueLangs, setUniqueLangs] = useState<string[]>([]);
-    const [relevantLangs, setRelevantLangs] = useState<string[]>([]);
-    const [relevantTech, setRelevantTech] = useState<string[]>(uniqueTech);
     const [appLangs, setAppLangs] = useState<Record<string, string[]>>({});
-    const [filterLangs, _setFilterLangs] = useState<string[]>([]);
-    const [filterTech, _setFilterTech] = useState<string[]>([]);
+    const [filterLangs, setFilterLangs] = useState<string[]>([]);
+    const [filterTech, setFilterTech] = useState<string[]>([]);
 
     const { isLoading: langsLoading, langs } = useLangs();
 
@@ -67,29 +88,35 @@ export const FilterProivder: React.FC = ({ children }) => {
                 newUnique.push(...unique);
             });
             setUniqueLangs(newUnique);
-            setRelevantLangs(newUnique);
             setAppLangs(langs)
         }
     }, [langsLoading]);
 
-    const setFilterTech = (newFilterTech: string[]) => {
-        _setFilterTech(newFilterTech);
+    let filteredApps = apps;
+
+    if (filterTech.length > 0) {
+        filteredApps = filteredApps.filter(app => {
+            return app.tech.some(t => filterTech.includes(t));
+        });
     }
 
-    const setFilterLangs = (newFilterLangs: string[]) => {
-        _setFilterLangs(newFilterLangs);
+    if (filterLangs.length > 0) {
+        filteredApps = filteredApps.filter(app => {
+            return appLangs[app.name].some(l => filterLangs.includes(l));
+        })
     }
 
     return (
         <filterContext.Provider value={{
             uniqueLangs,
             filterLangs,
-            relevantLangs,
-            relevantTech,
+            relevantLangs: getAvailableLangs(filteredApps, appLangs),
+            relevantTech: getAvailableTech(filteredApps),
             setFilterLangs,
             filterTech,
             setFilterTech,
-            appLangs
+            appLangs,
+            filteredApps
         }}>
             {children}
         </filterContext.Provider>
