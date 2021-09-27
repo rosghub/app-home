@@ -10,7 +10,6 @@ export type FilterContextState = {
     setFilterLangs: (filterLangs: string[]) => void
     filterTech: string[]
     setFilterTech: (filterTech: string[]) => void
-    appLangs: Record<string, string[]>,
     filteredApps: App[]
 }
 
@@ -21,7 +20,6 @@ const filterContext = createContext<FilterContextState>({
     setFilterLangs: () => { },
     filterTech: [],
     setFilterTech: () => { },
-    appLangs: {},
     filteredApps: apps
 });
 
@@ -72,18 +70,18 @@ function getAvailableLangs(
 }
 
 export const FilterProvider: React.FC = ({ children }) => {
-    const [appLangs, setAppLangs] = useState<Record<string, string[]>>({});
+    //const [appLangs, setAppLangs] = useState<Record<string, string[]>>({});
     const [filterLangs, setFilterLangs] = useState<string[]>([]);
     const [filterTech, setFilterTech] = useState<string[]>([]);
 
     const { isLoading: isLoadingLangs, langs } = useLangs();
-
+/*
     useEffect(() => {
         if (!isLoadingLangs)
             setAppLangs(langs)
 
     }, [isLoadingLangs]);
-
+*/
     let filteredApps = apps;
 
     if (filterTech.length > 0) {
@@ -94,19 +92,18 @@ export const FilterProvider: React.FC = ({ children }) => {
 
     if (filterLangs.length > 0) {
         filteredApps = filteredApps.filter(app => {
-            return appLangs[app.name].some(l => filterLangs.includes(l));
+            return langs[app.name].some(l => filterLangs.includes(l));
         })
     }
 
     return (
         <filterContext.Provider value={{
             filterLangs,
-            relevantLangs: getAvailableLangs(filteredApps, appLangs),
+            relevantLangs: getAvailableLangs(filteredApps, langs),
             relevantTech: getAvailableTech(filteredApps),
             setFilterLangs,
             filterTech,
             setFilterTech,
-            appLangs,
             filteredApps
         }}>
             {children}
