@@ -5,8 +5,8 @@ import styles from '../styles/Home.module.css'
 
 import AppList from '../components/AppList'
 import Navbar from '../components/navbar';
-import FilterTech from '../components/FilterTech';
-import FilterLangs from '../components/FilterLangs';
+import FilterTech from '../components/filter/FilterTech';
+import FilterLangs from '../components/filter/FilterLangs';
 
 import { FilterProvider, useFilterContext } from '../context/FilterContext';
 

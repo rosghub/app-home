@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { App } from '../data/apps';
+import { App } from '../../data/apps';
 import styles from './FilterTech.module.css';
 
-import { useFilterContext } from '../context/FilterContext'
+import { useFilterContext } from '../../context/FilterContext'
 
 interface AggregateTechProps {
     apps: App[],

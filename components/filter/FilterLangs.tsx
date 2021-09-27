@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useFilterContext } from '../context/FilterContext';
+import { useFilterContext } from '../../context/FilterContext';
 
 const FilterTech: FC = (): JSX.Element => {
     const { relevantLangs, filterLangs, setFilterLangs } = useFilterContext();
