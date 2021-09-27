@@ -79,19 +79,15 @@ export const FilterProvider: React.FC = ({ children }) => {
     const [filterLangs, setFilterLangs] = useState<string[]>([]);
     const [filterTech, setFilterTech] = useState<string[]>([]);
 
-    const { isLoading: langsLoading, langs } = useLangs();
+    const { isLoading: isLoadingLangs, langs } = useLangs();
 
     useEffect(() => {
-        if (!langsLoading) {
-            const newUnique: string[] = [];
-            Object.keys(langs).forEach(app => {
-                const unique = langs[app].filter(l => !newUnique.includes(l));
-                newUnique.push(...unique);
-            });
+        if (!isLoadingLangs) {
+            const newUnique = getAvailableLangs(apps, langs);
             setUniqueLangs(newUnique);
             setAppLangs(langs)
         }
-    }, [langsLoading]);
+    }, [isLoadingLangs]);
 
     let filteredApps = apps;
 
