@@ -1,5 +1,5 @@
 # TODO
-Selecting filter filters available tech/langs relevant to selection
+Remove RemoteAppProperty call to lookup languages, use props from context
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
