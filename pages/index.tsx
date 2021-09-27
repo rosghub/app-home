@@ -5,11 +5,10 @@ import styles from '../styles/Home.module.css'
 
 import AppList from '../components/AppList'
 import Navbar from '../components/navbar';
-import AppItem from '../components/app/AppItem';
 import FilterTech from '../components/FilterTech';
 import FilterLangs from '../components/FilterLangs';
 
-import { FilterProivder, useFilterContext } from '../context/FilterContext';
+import { FilterProvider, useFilterContext } from '../context/FilterContext';
 
 import apps from '../data/apps';
 
@@ -41,7 +40,7 @@ const Home: FC = () => {
                     </div>
                 </section>
 
-                <FilterProivder>
+                <FilterProvider>
                     <section className="section">
                         <div className="container" style={{ marginBottom: '3rem' }}>
                             <p><strong>Libraries, frameworks, and databases</strong></p>
@@ -59,7 +58,7 @@ const Home: FC = () => {
 
                         </div>
                     </section>
-                </FilterProivder>
+                </FilterProvider>
 
             </body>
         </div>

@@ -65,14 +65,15 @@ function getAvailableLangs(
     appLangs: Record<string, string[]>
 ): string[] {
     const unique: string[] = [];
-    filteredApps.forEach(({ name })=> {
-        const u = appLangs[name].filter(l => !unique.includes(l));
-        unique.push(...u);
+    filteredApps.forEach(({ name }) => {
+        const u = appLangs[name]?.filter(l => !unique.includes(l));
+        if (u)
+            unique.push(...u);
     });
     return unique;
 }
 
-export const FilterProivder: React.FC = ({ children }) => {
+export const FilterProvider: React.FC = ({ children }) => {
     const [uniqueLangs, setUniqueLangs] = useState<string[]>([]);
     const [appLangs, setAppLangs] = useState<Record<string, string[]>>({});
     const [filterLangs, setFilterLangs] = useState<string[]>([]);
