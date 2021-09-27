@@ -4,7 +4,6 @@ import { batchFetch } from '../utils/utils';
 import useSWR from 'swr';
 
 export type FilterContextState = {
-    uniqueLangs: string[]
     filterLangs: string[]
     relevantLangs: string[]
     relevantTech: string[]
@@ -16,7 +15,6 @@ export type FilterContextState = {
 }
 
 const filterContext = createContext<FilterContextState>({
-    uniqueLangs: [],
     filterLangs: [],
     relevantLangs: [],
     relevantTech: [],
@@ -74,7 +72,6 @@ function getAvailableLangs(
 }
 
 export const FilterProvider: React.FC = ({ children }) => {
-    const [uniqueLangs, setUniqueLangs] = useState<string[]>([]);
     const [appLangs, setAppLangs] = useState<Record<string, string[]>>({});
     const [filterLangs, setFilterLangs] = useState<string[]>([]);
     const [filterTech, setFilterTech] = useState<string[]>([]);
@@ -82,11 +79,9 @@ export const FilterProvider: React.FC = ({ children }) => {
     const { isLoading: isLoadingLangs, langs } = useLangs();
 
     useEffect(() => {
-        if (!isLoadingLangs) {
-            const newUnique = getAvailableLangs(apps, langs);
-            setUniqueLangs(newUnique);
+        if (!isLoadingLangs)
             setAppLangs(langs)
-        }
+
     }, [isLoadingLangs]);
 
     let filteredApps = apps;
@@ -105,7 +100,6 @@ export const FilterProvider: React.FC = ({ children }) => {
 
     return (
         <filterContext.Provider value={{
-            uniqueLangs,
             filterLangs,
             relevantLangs: getAvailableLangs(filteredApps, appLangs),
             relevantTech: getAvailableTech(filteredApps),

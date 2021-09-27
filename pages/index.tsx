@@ -15,8 +15,6 @@ import apps from '../data/apps';
 
 const Home: FC = () => {
 
-    const { uniqueLangs, filterTech } = useFilterContext();
-
     return (
         <div className={styles.container}>
             <Head>
