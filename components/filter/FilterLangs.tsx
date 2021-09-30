@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import { useFilterContext } from '../../context/FilterContext';
 
 const FilterTech: FC = (): JSX.Element => {
-    const { relevantLangs, filterLangs, setFilterLangs } = useFilterContext();
+    const { relevantLangs, allLangs, filterLangs, setFilterLangs } = useFilterContext();
 
-    const langs = ['All', ...relevantLangs];
+    const langs = ['All', ...allLangs];
 
     const toggleLang = (index: number) => {
         const l = langs[index];
@@ -32,7 +32,8 @@ const FilterTech: FC = (): JSX.Element => {
                         type="checkbox"
                         style={{ verticalAlign: 'bottom' }}
                         checked={(filterLangs.length + i) == 0 || filterLangs.includes(l)}
-                        onChange={() => toggleLang(i)} />
+                        onChange={() => toggleLang(i)}
+                        disabled={i > 0 && !relevantLangs.includes(l)} />
                     {` ${l} `}
                 </label>
             )
